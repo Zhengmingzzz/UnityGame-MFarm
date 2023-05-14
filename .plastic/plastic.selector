@@ -1,0 +1,4 @@
+repository "麦田物语@aabcdeff@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
