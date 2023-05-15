@@ -24,10 +24,10 @@ public static class EventHandler
 
 
 
-    public static event Action<ItemDetails, bool> HoldUpItemWhenSelect;
-    public static void CallUpHoldUpItemWhenSelect(ItemDetails itemdetails, bool isSelect)
+    public static event Action<ItemDetails, bool> ItemSelectEvent;
+    public static void CallUpItemSelectEvent(ItemDetails itemdetails, bool isSelect)
     {
-        HoldUpItemWhenSelect?.Invoke(itemdetails, isSelect);
+        ItemSelectEvent?.Invoke(itemdetails, isSelect);
     }
 
 

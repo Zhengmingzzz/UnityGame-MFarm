@@ -22,12 +22,12 @@ public class AnimationOverride : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHandler.HoldUpItemWhenSelect += HoldItemInScene;
+        EventHandler.ItemSelectEvent += HoldItemInScene;
     }
 
     private void OnDisable()
     {
-        EventHandler.HoldUpItemWhenSelect -= HoldItemInScene;
+        EventHandler.ItemSelectEvent -= HoldItemInScene;
     }
 
     public void HoldItemInScene(ItemDetails itemdetails, bool isSelect)

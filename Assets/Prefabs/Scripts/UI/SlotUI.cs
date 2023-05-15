@@ -62,7 +62,7 @@ namespace MFarm.Inventory
 
             if (slotType == SlotType.Bag)
             {
-                EventHandler.CallUpHoldUpItemWhenSelect(itemDetail, isSelect);
+                EventHandler.CallUpItemSelectEvent(itemDetail, isSelect);
             }
         }
 
