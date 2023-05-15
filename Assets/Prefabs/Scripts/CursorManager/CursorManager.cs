@@ -13,6 +13,8 @@ public class CursorManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+
         cursorCanvasTransfrom = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         CursorImage = cursorCanvasTransfrom.GetChild(0).GetComponent<Image>();
 
