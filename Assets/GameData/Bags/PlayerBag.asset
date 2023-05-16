@@ -21,10 +21,10 @@ MonoBehaviour:
     ItemAmount: 103
   - ItemID: 1002
     ItemAmount: 2
-  - ItemID: 0
-    ItemAmount: 0
-  - ItemID: 0
-    ItemAmount: 0
+  - ItemID: 2001
+    ItemAmount: 100
+  - ItemID: 3001
+    ItemAmount: 100
   - ItemID: 0
     ItemAmount: 0
   - ItemID: 0

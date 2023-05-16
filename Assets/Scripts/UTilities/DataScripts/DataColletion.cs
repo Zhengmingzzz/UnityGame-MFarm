@@ -64,5 +64,23 @@ public class SerializedVector3
     }
 }
 
+[System.Serializable]
+public class TileProperty
+{
+    public int gridX, gridY;
+    public E_GridType gridType;
+    public bool gridTypeBoolValue;
+}
 
+[System.Serializable]
+public class GridDetail
+{
+    public int gridX, gridY;
+    public bool CanDig = false, CanDropItem = false, CanPlaceFurniture = false, NPC_Obstacle = false;
 
+    public int digSinceDay = -1;
+    public int wateredSinceDay = -1;
+    public int seedID = -1;
+    public int seedSinceDay = -1;
+
+}

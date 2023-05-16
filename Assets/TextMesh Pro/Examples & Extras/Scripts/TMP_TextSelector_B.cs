@@ -306,7 +306,7 @@ namespace TMPro.Examples
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //Debug.Log("Click at POS: " + eventData.position + "  World POS: " + eventData.worldPosition);
+            //Debug.Log("Click at POS: " + eventData.position + "  World POS: " + eventData.mouseWorldPosition);
 
             // Check if Mouse Intersects any of the characters. If so, assign a random color.
             #region Character Selection Handling

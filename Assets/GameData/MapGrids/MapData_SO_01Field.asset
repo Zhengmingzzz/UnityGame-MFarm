@@ -1,0 +1,1052 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9dfda6634e6ba41b6ec72ba91df827, type: 3}
+  m_Name: MapData_SO_01Field
+  m_EditorClassIdentifier: 
+  SceneName: 01Field
+  TilePropertiesList:
+  - gridX: -75
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -75
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -74
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -14
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -13
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -12
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -11
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -10
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -9
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -8
+    gridType: 0
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -73
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -72
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -71
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -70
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -69
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -68
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -67
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -61
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -61
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -61
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -60
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -60
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -60
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -59
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -59
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -59
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -58
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -58
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -58
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -58
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -57
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -57
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -57
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -57
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -56
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -56
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -56
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -56
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -55
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -55
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -55
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -55
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: -1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 0
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -53
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -52
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -51
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -50
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -49
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -48
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -47
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -46
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -45
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 1
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 2
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -44
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -43
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 3
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 4
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 5
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 6
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 7
+    gridType: 1
+    gridTypeBoolValue: 1
+  - gridX: -42
+    gridY: 8
+    gridType: 1
+    gridTypeBoolValue: 1

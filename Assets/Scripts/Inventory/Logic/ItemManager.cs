@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 namespace MFarm.Inventory
 {
@@ -74,7 +75,6 @@ namespace MFarm.Inventory
             {
                 scenesItemsDic.Add(SceneManager.GetActiveScene().name, currentsceneItems);
             }
-
         }
 
         private void LoadSceneItems()

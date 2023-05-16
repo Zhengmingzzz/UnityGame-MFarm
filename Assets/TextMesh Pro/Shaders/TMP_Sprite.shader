@@ -72,7 +72,7 @@ Shader "TextMeshPro/Sprite"
 				float4 vertex   : SV_POSITION;
 				fixed4 color    : COLOR;
                 float2 texcoord  : TEXCOORD0;
-				float4 worldPosition : TEXCOORD1;
+				float4 mouseWorldPosition : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
 			};
 			
@@ -87,8 +87,8 @@ Shader "TextMeshPro/Sprite"
 				v2f OUT;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
-                OUT.worldPosition = v.vertex;
-				OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
+                OUT.mouseWorldPosition = v.vertex;
+				OUT.vertex = UnityObjectToClipPos(OUT.mouseWorldPosition);
 
                 OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 				
@@ -101,7 +101,7 @@ Shader "TextMeshPro/Sprite"
 				half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 				
                 #ifdef UNITY_UI_CLIP_RECT
-					color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
+					color.a *= UnityGet2DClipping(IN.mouseWorldPosition.xy, _ClipRect);
 				#endif
 
 				#ifdef UNITY_UI_ALPHACLIP
