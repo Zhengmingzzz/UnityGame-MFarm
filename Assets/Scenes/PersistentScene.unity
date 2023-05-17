@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967a5c4fd98dd0b43ae98c384eac5078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 01Home
+  startSceneName: 01Field
 --- !u!4 &1657792077
 Transform:
   m_ObjectHideFlags: 0

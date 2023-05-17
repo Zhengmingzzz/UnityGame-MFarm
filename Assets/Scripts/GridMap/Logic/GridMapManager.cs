@@ -19,7 +19,16 @@ namespace MFarm.Map
         }
 
 
+        private void OnEnable()
+        {
+            EventHandler.executeActionAfterAnimation += OnExecuteActionAfterAnimation;
+        }
 
+        private void OnDisable()
+        {
+            EventHandler.executeActionAfterAnimation -= OnExecuteActionAfterAnimation;
+
+        }
 
 
         private void GetmapDataToDic(MapData_SO mapData_SO)
@@ -79,5 +88,17 @@ namespace MFarm.Map
         }
 
 
+        private void OnExecuteActionAfterAnimation(Vector3 clickedWorldPos, ItemDetails clickedItemDetail)
+        {
+            switch (clickedItemDetail.itemType)
+            {
+                case ItemType.Commodity:
+                    EventHandler.CallUpInstantiateItemInScene(clickedItemDetail.ItemID, clickedWorldPos);
+                    break;
+            }
+        }
+
     }
+
+
 }

@@ -25,9 +25,6 @@ public class Player : MonoBehaviour
     }
 
 
-    void Update()
-    {
-    }
 
     private void FixedUpdate()
     {
@@ -47,6 +44,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent += OnMoveToNewSceneEvent;
+        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
 
     }
 
@@ -57,7 +55,10 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent -= OnMoveToNewSceneEvent;
+        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
+
     }
+
 
     private void OnBeforeUnLoadSceneEvent()
     {
@@ -114,5 +115,14 @@ public class Player : MonoBehaviour
                 a.SetFloat("InputY", InputY);
             }
         }
+    }
+
+
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
+    {
+        //TODO:播放执行动画
+        Debug.Log("Player执行动画");
+        //执行实际产生结果
+        EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
     }
 }

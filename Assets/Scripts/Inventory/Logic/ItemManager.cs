@@ -46,6 +46,8 @@ namespace MFarm.Inventory
 
         public void OnInstantiateInScene(int itemID, Vector3 ItemPos)
         {
+            Debug.Log(itemID+"Instantiate");
+
             var item = Instantiate(itemPrefab, ItemPos, Quaternion.identity, itemParent);
 
             item.ItemID = itemID;

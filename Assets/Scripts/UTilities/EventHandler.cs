@@ -81,4 +81,23 @@ public static class EventHandler
     {
         MoveToNewSceneEvent?.Invoke(newScenePos);
     }
+
+    public static event Action<Vector3, ItemDetails> mouseClickedEvent;
+    public static void CallUpMouseClickedEvent(Vector3 mouseClickedWorldPosition, ItemDetails itemDetails)
+    {
+        mouseClickedEvent?.Invoke(mouseClickedWorldPosition, itemDetails);
+    }
+
+    public static event Action<Vector3, ItemDetails> executeActionAfterAnimation;
+    public static void CallUpExecuteActionAfterAnimation(Vector3 mouseClickedWorldPosition, ItemDetails itemDetails)
+    {
+        executeActionAfterAnimation?.Invoke(mouseClickedWorldPosition, itemDetails);
+    }
+
+
+
+
+
+
+
 }

@@ -19,8 +19,8 @@ public class CursorManager : MonoBehaviour
 
     private ItemDetails selectedItemDetail;
     private bool isSelected;
-
     private bool isTransition;
+    private bool mouseValid;
 
 
 
@@ -58,8 +58,8 @@ public class CursorManager : MonoBehaviour
                     currentSprite = normal;
                     SetCursorImage(currentSprite);
                 }
-
             }
+            OnmouseClicked();
         }
 
         if (Cursor.visible != false && Application.isPlaying)
@@ -80,7 +80,7 @@ public class CursorManager : MonoBehaviour
     private void OnDisable()
     {
         EventHandler.ItemSelectEvent -= OnItemSelectEvent;
-        EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
+        EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
 
     }
@@ -90,7 +90,6 @@ public class CursorManager : MonoBehaviour
     private void OnItemSelectEvent(ItemDetails itemDetail, bool isSelected)
     {
         this.isSelected = isSelected;
-
         if (!isSelected)
         {
             selectedItemDetail = null;
@@ -113,6 +112,7 @@ public class CursorManager : MonoBehaviour
                 _=>normal,
             };
         }
+
     }
 
     private bool isInterActWithUI()
@@ -144,8 +144,8 @@ public class CursorManager : MonoBehaviour
 
     private void OnAfterLoadSceneEvent()
     {
-        isTransition = false;
         currentGrid = FindObjectOfType<Grid>();
+        isTransition = false;
     }
 
 
@@ -153,11 +153,13 @@ public class CursorManager : MonoBehaviour
 
     private void CheckCursorValid()
     {
+        mouseValid = false;
+
         mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         mouseGridPos = currentGrid.WorldToCell(mouseWorldPos);
 
-        if (isSelected)
+        if (!isTransition && isSelected)
         {
             GridDetail CheckGridDetailInfo = MFarm.Map.GridMapManager.Instance.getGridDetailByPos(mouseGridPos);
 
@@ -168,6 +170,7 @@ public class CursorManager : MonoBehaviour
                     case ItemType.Commodity:
                         if (CheckGridDetailInfo.CanDropItem == true)
                         {
+                            mouseValid = true ;
                             SetCursorValidColor(true);
                         }
                         else
@@ -178,6 +181,7 @@ public class CursorManager : MonoBehaviour
                     case ItemType.Furniture:
                         if (CheckGridDetailInfo.CanPlaceFurniture == true)
                         {
+                            mouseValid = true;
                             SetCursorValidColor(true);
                         }
 
@@ -189,6 +193,7 @@ public class CursorManager : MonoBehaviour
                     case ItemType.Seed:
                         if (CheckGridDetailInfo.CanDig == true)
                         {
+                            mouseValid = true;
                             SetCursorValidColor(true);
                         }
                         else
@@ -225,5 +230,18 @@ public class CursorManager : MonoBehaviour
         {
             CursorImage.color = new Color(1, 0, 0, 0.4f);
         }
+    }
+
+    private void OnmouseClicked()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (selectedItemDetail != null && !isTransition && mouseValid)
+            {
+                EventHandler.CallUpMouseClickedEvent(mouseWorldPos, selectedItemDetail);
+
+            }
+        }
+            
     }
 }
