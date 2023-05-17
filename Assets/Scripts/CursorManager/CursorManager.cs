@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
-    public Sprite normal, tool, cursorSeed, goods, UISprite;
+    public Sprite normal, tool, cursorSeed, goods, UISprite, Furniture;
     private RectTransform cursorCanvasTransfrom;
     private Image CursorImage;
     private Sprite currentSprite;
@@ -103,6 +103,7 @@ public class CursorManager : MonoBehaviour
             {
                 ItemType.Seed =>cursorSeed,
                 ItemType.Commodity=>goods,
+                ItemType.Furniture => Furniture,
                 ItemType.HoeTool=>tool,
                 ItemType.BreakTool => tool,
                 ItemType.ChopTool => tool,
@@ -159,7 +160,6 @@ public class CursorManager : MonoBehaviour
         if (isSelected)
         {
             GridDetail CheckGridDetailInfo = MFarm.Map.GridMapManager.Instance.getGridDetailByPos(mouseGridPos);
-
 
             if (selectedItemDetail != null && CheckGridDetailInfo != null)
             {

@@ -1476,3 +1476,4 @@ MonoBehaviour:
   cursorSeed: {fileID: 21300000, guid: 12a29531fbff14d4c9df6b98a0ea52c4, type: 3}
   goods: {fileID: 21300000, guid: b56e6234cd04cae4480b73d35724b49b, type: 3}
   UISprite: {fileID: 21300000, guid: 9a9a513fe845f784cb7e6b240a45477c, type: 3}
+  Furniture: {fileID: 21300000, guid: 2f0836cf3bf136f4c9b46097290c2db2, type: 3}
