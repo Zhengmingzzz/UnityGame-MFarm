@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normal: {fileID: 21300000, guid: 34e451941ecbccd41b871668489cecbf, type: 3}
   tool: {fileID: 21300000, guid: 2dceb3fca6f53a24a9bd3d549753e3ad, type: 3}
-  cursorSeed: {fileID: 21300000, guid: 12a29531fbff14d4c9df6b98a0ea52c4, type: 3}
-  goods: {fileID: 21300000, guid: b56e6234cd04cae4480b73d35724b49b, type: 3}
-  UISprite: {fileID: 21300000, guid: 9a9a513fe845f784cb7e6b240a45477c, type: 3}
-  Furniture: {fileID: 21300000, guid: 2f0836cf3bf136f4c9b46097290c2db2, type: 3}
+  cursorSeed: {fileID: 21300000, guid: 30a7d5fdb4dbef44b8a1625718f201c6, type: 3}
+  goods: {fileID: 21300000, guid: 000fe795a723f1d40b013e74ec2c231b, type: 3}
+  UISprite: {fileID: 21300000, guid: 3afef6bf65ab74846a520a2bbb33ef17, type: 3}
+  Furniture: {fileID: 21300000, guid: 6869870039087ea49a98fd5ad66cbccb, type: 3}
