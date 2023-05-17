@@ -94,6 +94,21 @@ namespace MFarm.Map
             {
                 case ItemType.Commodity:
                     EventHandler.CallUpInstantiateItemInScene(clickedItemDetail.ItemID, clickedWorldPos);
+
+                    InventoryType i = Inventory.InventoryManager.Instance.playerBag.itemList[clickedItemDetail.ItemID];
+                    if (i.ItemAmount <= 1)
+                    {
+                        i.ItemAmount--;
+                        i.ItemID = 0;
+                    }
+                    else
+                    {
+                        i.ItemAmount--;
+                    }
+                    Inventory.InventoryManager.Instance.playerBag.itemList[clickedItemDetail.ItemID] = i;
+
+
+                    EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, Inventory.InventoryManager.Instance.playerBag.itemList);
                     break;
             }
         }

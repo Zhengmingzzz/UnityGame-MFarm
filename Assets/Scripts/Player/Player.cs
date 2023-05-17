@@ -121,8 +121,8 @@ public class Player : MonoBehaviour
     private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
     {
         //TODO:播放执行动画
-        Debug.Log("Player执行动画");
         //执行实际产生结果
+        mouseWorldPos.z = 0;
         EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
     }
 }
