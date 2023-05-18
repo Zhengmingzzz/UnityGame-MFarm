@@ -13,20 +13,48 @@ namespace MFarm.Inventory
         [Header("±³°üÊý¾Ý")]
         public InventoryBag_SO playerBag;
 
+
+
+
         private void Start()
         {
             EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, playerBag.itemList);
         }
-        public ItemDetails GetItemDetails(int Index)
+        private void OnEnable()
+        {
+            EventHandler.DropItemEvent += OnDropItemEvent;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.DropItemEvent -= OnDropItemEvent;
+        }
+
+
+
+        public ItemDetails GetItemDetailsByID(int ItemID)
         {
             foreach (ItemDetails t in itemDetailList.ItemDetailsList)
             {
-                if (t.ItemID == Index)
+                if (t.ItemID == ItemID)
                 {
                     return t;
                 }
             }
             return null;
+        }
+
+        public int GetPlayerBagItemIndexByID(int ItemID)
+        {
+
+            for (int i = 0; i < playerBag.itemList.Count; i++)
+            {
+                if (playerBag.itemList[i].ItemID == ItemID)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         public int bagIsFull()
@@ -133,12 +161,41 @@ namespace MFarm.Inventory
             }
             EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, playerBag.itemList);
         }
+        public void RemoveItemAmount(int itemID, int RemoveAmount)
+        {
+            int itemIndex = GetPlayerBagItemIndexByID(itemID);
+            if (itemIndex != -1)
+            {
+                InventoryType currentItemInfo = playerBag.itemList[itemIndex];
 
+                if (currentItemInfo.ItemAmount != 0)
+                {
+                    if (currentItemInfo.ItemAmount > RemoveAmount)
+                    {
+                        playerBag.itemList[itemIndex] = new InventoryType { ItemAmount = currentItemInfo.ItemAmount - RemoveAmount, ItemID = itemID };
+                    }
+                    else if (currentItemInfo.ItemAmount == RemoveAmount)
+                    {
+                        playerBag.itemList[itemIndex] = new InventoryType();
+                    
+                    }
+                    EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, playerBag.itemList);
+
+                }
+            }
+
+            
+        }
+
+        private void OnDropItemEvent(int itemID, Vector3 GridPos)
+        {
+            RemoveItemAmount(itemID, 1);
+        }
 
     }
-
-
-    
 }
+    
+    
+
 
 

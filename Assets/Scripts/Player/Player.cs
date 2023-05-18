@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent -= OnMoveToNewSceneEvent;
-        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
+        EventHandler.mouseClickedEvent -= OnMouseClickedEvent;
 
     }
 
@@ -122,7 +122,6 @@ public class Player : MonoBehaviour
     {
         //TODO:播放执行动画
         //执行实际产生结果
-        mouseWorldPos.z = 0;
         EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
     }
 }

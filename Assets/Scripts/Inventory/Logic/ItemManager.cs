@@ -22,6 +22,7 @@ namespace MFarm.Inventory
             EventHandler.InstantiateItemInScene += OnInstantiateInScene;
             EventHandler.BeforeUnLoadSceneEvent += OnUnLoadSceneEvent;
             EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
+            EventHandler.DropItemEvent += OnDropItemEvent;
         }
 
         
@@ -31,8 +32,10 @@ namespace MFarm.Inventory
             EventHandler.InstantiateItemInScene -= OnInstantiateInScene;
             EventHandler.BeforeUnLoadSceneEvent -= OnUnLoadSceneEvent;
             EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
+            EventHandler.DropItemEvent += OnDropItemEvent;
 
         }
+
 
         private void OnUnLoadSceneEvent()
         {
@@ -111,11 +114,11 @@ namespace MFarm.Inventory
 
         }
 
-
-
-
-
-
+        private void OnDropItemEvent(int ItemID, Vector3 GridPos)
+        {
+            //TODO:实现扔东西效果
+            OnInstantiateInScene(ItemID, GridPos);
+        }
 
 
     }

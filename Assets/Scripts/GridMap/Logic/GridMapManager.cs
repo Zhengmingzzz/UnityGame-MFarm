@@ -8,7 +8,11 @@ namespace MFarm.Map
     public class GridMapManager : Singleton<GridMapManager>
     {
         public List<MapData_SO> mapData_SO_List;
-        private Dictionary<string, GridDetail> GridDetailDic = new Dictionary<string, GridDetail>();
+        private Dictionary<string, TileDetail> TileDetailDic = new Dictionary<string, TileDetail>();
+
+        private Grid currentGrid;
+
+
 
         private void Start()
         {
@@ -21,11 +25,13 @@ namespace MFarm.Map
 
         private void OnEnable()
         {
+            EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation += OnExecuteActionAfterAnimation;
         }
 
         private void OnDisable()
         {
+            EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation -= OnExecuteActionAfterAnimation;
 
         }
@@ -35,7 +41,7 @@ namespace MFarm.Map
         {
             foreach (TileProperty t in mapData_SO.TilePropertiesList)
             {
-                GridDetail gridDetail = new GridDetail
+                TileDetail TileDetail = new TileDetail
                 {
                     gridX = t.gridX,
                     gridY = t.gridY,
@@ -44,37 +50,37 @@ namespace MFarm.Map
                 switch (t.gridType)
                 {
                     case E_GridType.CanDig:
-                        gridDetail.CanDig = true;
+                        TileDetail.CanDig = true;
                         break;
                     case E_GridType.CanDrop:
-                        gridDetail.CanDropItem = true;
+                        TileDetail.CanDropItem = true;
                         break;
                     case E_GridType.CanPlaceFurniture:
-                        gridDetail.CanPlaceFurniture = true;
+                        TileDetail.CanPlaceFurniture = true;
                         break;
                     case E_GridType.NPC_Obstacle:
-                        gridDetail.NPC_Obstacle = true;
+                        TileDetail.NPC_Obstacle = true;
                         break;
                 }
 
                 string key = mapData_SO.SceneName + " " + t.gridX + "x" + t.gridY + "y";
-                GridDetail gridDe = getGridDetailByKey(key);
+                TileDetail gridDe = getTileDetailByKey(key);
                 if (gridDe != null)
                 {
-                    GridDetailDic[key] = gridDetail;
+                    TileDetailDic[key] = TileDetail;
                 }
                 else
                 {
-                    GridDetailDic.Add(key, gridDetail);
+                    TileDetailDic.Add(key, TileDetail);
                 }
             }
         }
 
-        private GridDetail getGridDetailByKey(string key)
+        private TileDetail getTileDetailByKey(string key)
         {
-            if (GridDetailDic.ContainsKey(key))
+            if (TileDetailDic.ContainsKey(key))
             {
-                return GridDetailDic[key];
+                return TileDetailDic[key];
             }
 
 
@@ -82,35 +88,41 @@ namespace MFarm.Map
         }
 
 
-        public GridDetail getGridDetailByPos(Vector3Int pos)
+        public TileDetail getTileDetailByPos(Vector3Int GridPos)
         {
-            return getGridDetailByKey(SceneManager.GetActiveScene().name + " " + pos.x + "x" + pos.y + "y");
+            return getTileDetailByKey(SceneManager.GetActiveScene().name + " " + GridPos.x + "x" + GridPos.y + "y");
+        }
+
+        /// <summary>
+        /// 执行实际功能
+        /// </summary>
+        /// <param name="clickedWorldPos">鼠标世界坐标信息</param>
+        /// <param name="clickedItemDetail">选择物品信息</param>
+        private void OnExecuteActionAfterAnimation(Vector3 clickedWorldPos, ItemDetails clickedItemDetail)
+        {
+            Vector3Int MousePositionInGrid = currentGrid.WorldToCell(clickedWorldPos);
+            TileDetail currentTileDetail = getTileDetailByPos(MousePositionInGrid);
+
+            if (currentTileDetail != null)
+            {
+                switch (clickedItemDetail.itemType)
+                {
+                    case ItemType.Commodity:
+                        EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, MousePositionInGrid);
+                        break;
+                }
+
+
+
+            }
+
+            
         }
 
 
-        private void OnExecuteActionAfterAnimation(Vector3 clickedWorldPos, ItemDetails clickedItemDetail)
+        private void OnAfterLoadSceneEvent()
         {
-            switch (clickedItemDetail.itemType)
-            {
-                case ItemType.Commodity:
-                    EventHandler.CallUpInstantiateItemInScene(clickedItemDetail.ItemID, clickedWorldPos);
-
-                    InventoryType i = Inventory.InventoryManager.Instance.playerBag.itemList[clickedItemDetail.ItemID];
-                    if (i.ItemAmount <= 1)
-                    {
-                        i.ItemAmount--;
-                        i.ItemID = 0;
-                    }
-                    else
-                    {
-                        i.ItemAmount--;
-                    }
-                    Inventory.InventoryManager.Instance.playerBag.itemList[clickedItemDetail.ItemID] = i;
-
-
-                    EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, Inventory.InventoryManager.Instance.playerBag.itemList);
-                    break;
-            }
+            currentGrid = GameObject.FindObjectOfType<Grid>();
         }
 
     }

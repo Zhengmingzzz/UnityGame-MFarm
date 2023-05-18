@@ -32,13 +32,18 @@ public class AnimationOverride : MonoBehaviour
 
     public void HoldItemInScene(ItemDetails itemdetails, bool isSelect)
     {
-        NowState nowState = itemdetails.itemType switch
+        NowState nowState = NowState.None;
+        if (itemdetails != null)
         {
-            ItemType.Seed => NowState.Carry,
-            ItemType.Commodity => NowState.Carry,
-            ItemType.Furniture => NowState.Carry,
-            _ => NowState.None
-        };
+            nowState = itemdetails.itemType switch
+            {
+                ItemType.Seed => NowState.Carry,
+                ItemType.Commodity => NowState.Carry,
+                ItemType.Furniture => NowState.Carry,
+                _ => NowState.None
+            };
+        }
+
 
         if (nowState == NowState.Carry)
         {

@@ -27,7 +27,7 @@ namespace MFarm.Inventory
 
         public void Init()
         {
-            itemDetails = InventoryManager.Instance.GetItemDetails(ItemID);
+            itemDetails = InventoryManager.Instance.GetItemDetailsByID(ItemID);
 
             if (itemDetails != null)
             {

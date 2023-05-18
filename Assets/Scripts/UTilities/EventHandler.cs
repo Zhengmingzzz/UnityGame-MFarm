@@ -21,7 +21,11 @@ public static class EventHandler
         InstantiateItemInScene?.Invoke(ID, pos);
     }
 
-
+    public static event Action<int, Vector3> DropItemEvent;
+    public static void CallUpDropItemEvent(int itemID, Vector3 targetPos)
+    {
+        DropItemEvent.Invoke(itemID, targetPos);
+    }
 
 
     public static event Action<ItemDetails, bool> ItemSelectEvent;

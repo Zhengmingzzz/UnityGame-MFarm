@@ -31,9 +31,30 @@ namespace MFarm.Inventory
         {
             isSelect = false;
         }
+        private void OnEnable()
+        {
+            EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
+        }
+        private void OnDisable()
+        {
+            EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
+        }
+
+        private void OnAfterLoadSceneEvent()
+        {
+            ItemHightLight.gameObject.SetActive(false);
+
+        }
 
         public void UpdataEmptySlot()
         {
+            if (isSelect)
+            {
+                isSelect = false;
+                itemDetail = null;
+                EventHandler.CallUpItemSelectEvent(itemDetail, isSelect);
+
+            }
             ItemImage.enabled = false;
             ItemButton.interactable = false;
             ItemHightLight.gameObject.SetActive(false);

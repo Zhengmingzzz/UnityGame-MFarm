@@ -73,7 +73,7 @@ public class TileProperty
 }
 
 [System.Serializable]
-public class GridDetail
+public class TileDetail
 {
     public int gridX, gridY;
     public bool CanDig = false, CanDropItem = false, CanPlaceFurniture = false, NPC_Obstacle = false;

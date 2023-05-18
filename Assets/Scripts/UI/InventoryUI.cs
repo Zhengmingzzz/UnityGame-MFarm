@@ -50,8 +50,10 @@ namespace MFarm.Inventory
 
         private void OnUpdataInvectoryUI(InventoryLocation Location , List<InventoryType> inventoryList)
         {
+            //TODO:添加其他物品栏位置的信息更新方法
             switch (Location)
             {
+
                 case InventoryLocation.Player:
                     for (int i = 0; i < inventoryList.Count; i++)
                     {
@@ -61,7 +63,7 @@ namespace MFarm.Inventory
                         }
                         else
                         {
-                            playerBag[i].UpdataSlot(InventoryManager.Instance.GetItemDetails(inventoryList[i].ItemID), inventoryList[i].ItemAmount);
+                            playerBag[i].UpdataSlot(InventoryManager.Instance.GetItemDetailsByID(inventoryList[i].ItemID), inventoryList[i].ItemAmount);
                         }
                     }
                     break;
