@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent += OnMoveToNewSceneEvent;
-        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
 
     }
 
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent -= OnMoveToNewSceneEvent;
-        EventHandler.mouseClickedEvent -= OnMouseClickedEvent;
 
     }
 
@@ -118,10 +116,4 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
-    {
-        //TODO:播放执行动画
-        //执行实际产生结果
-        EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
-    }
 }

@@ -45,6 +45,7 @@ public class CursorManager : MonoBehaviour
             CursorImage.transform.position = Input.mousePosition;
             if (isInterActWithUI())
             {
+                SetCursorValidColor(true);
                 SetCursorImage(UISprite);
             }
             else
@@ -76,6 +77,8 @@ public class CursorManager : MonoBehaviour
         EventHandler.ItemSelectEvent += OnItemSelectEvent;
         EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
+        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
+
 
     }
 
@@ -84,6 +87,7 @@ public class CursorManager : MonoBehaviour
         EventHandler.ItemSelectEvent -= OnItemSelectEvent;
         EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
+        EventHandler.mouseClickedEvent -= OnMouseClickedEvent;
 
     }
 
@@ -216,8 +220,10 @@ public class CursorManager : MonoBehaviour
             }
             else
             {
-                SetCursorValidColor(false);
+                mouseValid = false;
+                SetCursorValidColor(mouseValid);
             }
+
         }
         else
         {
@@ -227,7 +233,7 @@ public class CursorManager : MonoBehaviour
             mouseValid = true;
 
         }
-
+        
 
 
     }
@@ -254,5 +260,17 @@ public class CursorManager : MonoBehaviour
             }
         }
             
+    }
+
+
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
+    {
+        if (!isInterActWithUI())
+        {
+            //TODO:播放执行动画
+            //执行实际产生结果
+            EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
+        }
+
     }
 }
