@@ -360,7 +360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403978377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.8, y: -0, z: 0}
+  m_LocalPosition: {x: -62.88, y: -8.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -594,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447543597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.8, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -62.88, y: -8.11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -722,7 +722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.8, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -62.88, y: -8.11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1282,6 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219a8ef1c126c6044959ba1653e074b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterRuleTile: {fileID: 11400000, guid: ebff2d385740892498614cbd9f9a745e, type: 2}
+  digRuleTile: {fileID: 11400000, guid: 52a79f8207e39a845b9a7cdb1e978815, type: 2}
   mapData_SO_List:
   - {fileID: 11400000, guid: cd2ebbc80a4390948b1ea381fd58b3ec, type: 2}
   - {fileID: 11400000, guid: a2dc8fda2ba881749b80caecdb58bb10, type: 2}

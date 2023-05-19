@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 namespace MFarm.Map
 {
     public class GridMapManager : Singleton<GridMapManager>
     {
+        [Header("RuleTile")]
+        public RuleTile waterRuleTile;
+        public RuleTile digRuleTile;
+        private Tilemap waterTileMap;
+        private Tilemap digTileMap;
+
+        [Header("场景信息")]
         public List<MapData_SO> mapData_SO_List;
         private Dictionary<string, TileDetail> TileDetailDic = new Dictionary<string, TileDetail>();
 
@@ -111,7 +119,14 @@ namespace MFarm.Map
                     //TODO:添加其他类型的实现
                     case ItemType.Commodity:
                         EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, MousePositionInGrid);
-
+                        break;
+                    case ItemType.HoeTool:
+                        OnDigTile(currentTileDetail);
+                        currentTileDetail.digSinceDay = 0;
+                        break;
+                    case ItemType.WaterTool:
+                        OnWaterTile(currentTileDetail);
+                        currentTileDetail.wateredSinceDay = 0;
                         break;
                 }
 
@@ -125,8 +140,20 @@ namespace MFarm.Map
 
         private void OnAfterLoadSceneEvent()
         {
-            currentGrid = GameObject.FindObjectOfType<Grid>();
+            currentGrid = FindObjectOfType<Grid>();
+            waterTileMap = GameObject.FindGameObjectWithTag("Water").GetComponent<Tilemap>();
+            digTileMap = GameObject.FindGameObjectWithTag("Dig").GetComponent<Tilemap>();
         }
+
+        private void OnDigTile(TileDetail tileDetail)
+        {
+            digTileMap.SetTile(new Vector3Int(tileDetail.gridX, tileDetail.gridY, 0), digRuleTile);
+        }
+        private void OnWaterTile(TileDetail tileDetail)
+        {
+            waterTileMap.SetTile(new Vector3Int(tileDetail.gridX, tileDetail.gridY, 0), waterRuleTile);
+        }
+
 
     }
 

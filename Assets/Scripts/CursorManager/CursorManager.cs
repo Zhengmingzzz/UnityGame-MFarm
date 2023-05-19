@@ -171,43 +171,47 @@ public class CursorManager : MonoBehaviour
             if (selectedItemDetail != null && CheckTileDetailInfo != null)
             {
                 mouseValid = false;
+                //TODO:添加新的工具
                 switch (selectedItemDetail.itemType)
                 {
+
                     case ItemType.Commodity:
                         if (CheckTileDetailInfo.CanDropItem == true)
                         {
                             mouseValid = true ;
-                            SetCursorValidColor(true);
-                        }
-                        else
-                        {
-                            SetCursorValidColor(false);
                         }
                         break;
                     case ItemType.Furniture:
                         if (CheckTileDetailInfo.CanPlaceFurniture == true)
                         {
                             mouseValid = true;
-                            SetCursorValidColor(true);
-                        }
-
-                        else
-                        {
-                            SetCursorValidColor(false);
                         }
                         break;
-                    case ItemType.Seed:
-                        if (CheckTileDetailInfo.CanDig == true)
+                    //case ItemType.Seed:
+                    //    if (CheckTileDetailInfo.digSinceDay != -1)
+                    //    {
+                    //        mouseValid = true;
+                    //        SetCursorValidColor(true);
+                    //    }
+                    //    else
+                    //    {
+                    //        SetCursorValidColor(false);
+                    //    }
+                    //    break;
+                    case ItemType.HoeTool:
+                        if (CheckTileDetailInfo.CanDig)
                         {
                             mouseValid = true;
-                            SetCursorValidColor(true);
                         }
-                        else
+                        break;
+                    case ItemType.WaterTool:
+                        if (CheckTileDetailInfo.digSinceDay != -1)
                         {
-                            SetCursorValidColor(false);
+                            mouseValid = true;
                         }
                         break;
                 }
+                SetCursorValidColor(mouseValid);
 
             }
             else
