@@ -247,7 +247,6 @@ public class CursorManager : MonoBehaviour
             if (selectedItemDetail != null && !isTransition && mouseValid)
             {
                 EventHandler.CallUpMouseClickedEvent(mouseWorldPos, selectedItemDetail);
-
             }
         }
             

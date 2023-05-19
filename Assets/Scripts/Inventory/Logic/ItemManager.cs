@@ -8,12 +8,14 @@ namespace MFarm.Inventory
 {
     public class ItemManager : MonoBehaviour
     {
-        
+        [Header("Prefabs")]
         public RenderItem itemPrefab;
+        public RenderItem DroppedItemPrefab;
+
         private Transform itemParent;
         private Dictionary<string, List<sceneItems>> scenesItemsDic = new Dictionary<string, List<sceneItems>>();
 
-
+        private Transform playerTransform => FindObjectOfType<Player>().transform;
 
 
         private void OnEnable()
@@ -117,7 +119,12 @@ namespace MFarm.Inventory
         private void OnDropItemEvent(int ItemID, Vector3 GridPos)
         {
             //TODO:实现扔东西效果
-            OnInstantiateInScene(ItemID, GridPos);
+            var item = Instantiate(DroppedItemPrefab, playerTransform.position, Quaternion.identity, itemParent);
+            item.ItemID = ItemID;
+
+            var direction = (GridPos - playerTransform.position).normalized;
+
+            item.GetComponent<DroppedItem>().InitDroppedItem(GridPos, direction);
         }
 
 

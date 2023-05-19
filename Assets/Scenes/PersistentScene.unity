@@ -943,6 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 3807349029543861611, guid: 9741555b737ecee4b930be25e61af620, type: 3}
+  DroppedItemPrefab: {fileID: 1588095203131496285, guid: 89dacc0cd9509714fa269dca89303719, type: 3}
 --- !u!4 &1348839529
 Transform:
   m_ObjectHideFlags: 0

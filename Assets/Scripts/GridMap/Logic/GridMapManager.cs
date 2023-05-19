@@ -16,6 +16,7 @@ namespace MFarm.Map
 
         private void Start()
         {
+
             foreach (var t in mapData_SO_List)
             {
                 GetmapDataToDic(t);
@@ -103,12 +104,14 @@ namespace MFarm.Map
             Vector3Int MousePositionInGrid = currentGrid.WorldToCell(clickedWorldPos);
             TileDetail currentTileDetail = getTileDetailByPos(MousePositionInGrid);
 
-            if (currentTileDetail != null)
+            if (currentTileDetail != null && clickedItemDetail != null)
             {
                 switch (clickedItemDetail.itemType)
                 {
+                    //TODO:添加其他类型的实现
                     case ItemType.Commodity:
                         EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, MousePositionInGrid);
+
                         break;
                 }
 

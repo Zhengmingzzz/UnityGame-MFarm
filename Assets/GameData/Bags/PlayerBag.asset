@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - ItemID: 101
-    ItemAmount: 98
+    ItemAmount: 99
   - ItemID: 102
-    ItemAmount: 96
+    ItemAmount: 2
   - ItemID: 103
-    ItemAmount: 103
+    ItemAmount: 2
   - ItemID: 1002
     ItemAmount: 2
   - ItemID: 2001
-    ItemAmount: 92
+    ItemAmount: 89
   - ItemID: 3001
     ItemAmount: 2
   - ItemID: 0

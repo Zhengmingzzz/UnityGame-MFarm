@@ -23,12 +23,15 @@ public class AnimationOverride : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.ItemSelectEvent += HoldItemInScene;
+        EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.ItemSelectEvent -= HoldItemInScene;
+        EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
     }
+
 
     public void HoldItemInScene(ItemDetails itemdetails, bool isSelect)
     {
@@ -77,5 +80,9 @@ public class AnimationOverride : MonoBehaviour
         }
     }
 
+    private void OnAfterLoadSceneEvent()
+    {
+        HoldItemInScene(null, false);
+    }
 
 }
