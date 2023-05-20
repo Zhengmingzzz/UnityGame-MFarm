@@ -31,7 +31,7 @@ public enum BodyTypeName
 
 public enum NowState
 {
-    Carry,None,Hoe,
+    Carry,None,Hoe,Water,
 }
 
 public enum Season

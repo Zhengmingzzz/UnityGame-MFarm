@@ -31,7 +31,7 @@ public class AnimType
 {
     public BodyTypeName bodyName;
     public NowState nowState;
-    public AnimatorOverrideController animation;
+    public AnimatorOverrideController animator;
 
 }
 

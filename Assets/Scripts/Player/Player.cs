@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -11,16 +12,24 @@ public class Player : MonoBehaviour
     private float InputY;
     private Vector2 movementInput;
 
-    Animator[] animator;
+    Animator[] animators;
     bool isMoving;
 
     bool isChangeScene = false;
+
+    //播放动画参数
+    private float mouseX;
+    private float mouseY;
+    private bool isUseingTool;
+
+
+    private bool mouseDisable = false;
 
 
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        animator = this.GetComponentsInChildren<Animator>();
+        animators = this.GetComponentsInChildren<Animator>();
 
     }
 
@@ -28,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isChangeScene)
+        if (!isChangeScene && !mouseDisable)
             playerInput();
         else
         {
@@ -44,6 +53,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent += OnMoveToNewSceneEvent;
+        EventHandler.mouseClickedEvent += OnMouseClickedEvent;
 
     }
 
@@ -54,6 +64,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
         EventHandler.MoveToNewSceneEvent -= OnMoveToNewSceneEvent;
+        EventHandler.mouseClickedEvent -= OnMouseClickedEvent;
 
     }
 
@@ -103,9 +114,15 @@ public class Player : MonoBehaviour
 
     private void SwitchAnimation()
     {
-        foreach (var a in animator)
+        foreach (var a in animators)
         {
             a.SetBool("IsMoving", isMoving);
+
+            if (isUseingTool)
+            {
+                a.SetFloat("InputX", mouseX);
+                a.SetFloat("InputY", mouseY);
+            }
 
             if (isMoving)
             {
@@ -114,6 +131,62 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
+    {
+        if (EventSystem.current!=null&&!EventSystem.current.IsPointerOverGameObject())
+        {
+            //TODO:播放执行动画
+            //选择工具
+            if (clickedItemDetail.itemType != ItemType.Commodity && clickedItemDetail.itemType != ItemType.Furniture && clickedItemDetail.itemType != ItemType.Seed)
+            {
+                StartCoroutine(useTool(mouseWorldPos, clickedItemDetail));
+            }
+            else
+            {
+                //执行实际产生结果
+                EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
 
+            }
+        }
+
+    }
+
+    IEnumerator useTool(Vector3 mouseWorldPos, ItemDetails clickedItemDetail)
+    {
+        if (isUseingTool)
+            yield break;
+        mouseDisable = true;
+        isUseingTool = true;
+        mouseX = mouseWorldPos.x - this.transform.position.x;
+        mouseY = mouseWorldPos.y - this.transform.position.y;
+
+        if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
+        {
+            mouseY = 0;
+        }
+        else
+        {
+            mouseX = 0;
+        }
+
+
+        yield return null;
+
+
+
+        foreach (var anim in animators)
+        {
+            anim.SetTrigger("isUseingTool");
+            anim.SetFloat("mouseX", mouseX);
+            anim.SetFloat("mouseY", mouseY);
+        }
+        yield return new WaitForSeconds(0.45f);
+        EventHandler.CallUpExecuteActionAfterAnimation(mouseWorldPos, clickedItemDetail);
+        yield return new WaitForSeconds(0.25f);
+
+        isUseingTool = false;
+        mouseDisable = false;
+
+    }
 
 }

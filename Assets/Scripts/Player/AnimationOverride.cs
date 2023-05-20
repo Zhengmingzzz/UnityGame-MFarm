@@ -35,6 +35,7 @@ public class AnimationOverride : MonoBehaviour
 
     public void HoldItemInScene(ItemDetails itemdetails, bool isSelect)
     {
+        //TODO:添加角色新动画时需在此设置
         NowState nowState = NowState.None;
         if (itemdetails != null)
         {
@@ -43,6 +44,8 @@ public class AnimationOverride : MonoBehaviour
                 ItemType.Seed => NowState.Carry,
                 ItemType.Commodity => NowState.Carry,
                 ItemType.Furniture => NowState.Carry,
+                ItemType.HoeTool => NowState.Hoe,
+                ItemType.WaterTool=>NowState.Water,
                 _ => NowState.None
             };
         }
@@ -56,7 +59,6 @@ public class AnimationOverride : MonoBehaviour
         else
         {
             holdItemSpriteRenderer.enabled = false;
-            nowState = NowState.None;
         }
         
       
@@ -75,7 +77,7 @@ public class AnimationOverride : MonoBehaviour
         {
             if (a.nowState == nowstate)
             {
-                animDir[a.bodyName.ToString()].runtimeAnimatorController = a.animation;
+                animDir[a.bodyName.ToString()].runtimeAnimatorController = a.animator;
             }
         }
     }
