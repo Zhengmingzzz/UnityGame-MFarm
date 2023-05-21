@@ -123,15 +123,15 @@ namespace MFarm.Map
                     case ItemType.HoeTool:
                         OnDigTile(currentTileDetail);
                         currentTileDetail.digSinceDay = 0;
+                        currentTileDetail.CanDig = false;
+                        currentTileDetail.CanDropItem = false;
                         break;
                     case ItemType.WaterTool:
                         OnWaterTile(currentTileDetail);
                         currentTileDetail.wateredSinceDay = 0;
                         break;
                 }
-
-
-
+                
             }
 
             

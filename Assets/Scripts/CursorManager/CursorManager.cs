@@ -207,7 +207,7 @@ public class CursorManager : MonoBehaviour
                         }
                         break;
                     case ItemType.WaterTool:
-                        if (CheckTileDetailInfo.digSinceDay != -1)
+                        if (CheckTileDetailInfo.digSinceDay != -1 && CheckTileDetailInfo.wateredSinceDay == -1)
                         {
                             mouseValid = true;
                         }
