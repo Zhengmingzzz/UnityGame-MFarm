@@ -36,12 +36,14 @@ namespace MFarm.Map
         {
             EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation += OnExecuteActionAfterAnimation;
+            EventHandler.UpdataGameDayEvent += OnUpdataGameDayEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation -= OnExecuteActionAfterAnimation;
+            EventHandler.UpdataGameDayEvent -= OnUpdataGameDayEvent;
 
         }
 
@@ -131,7 +133,7 @@ namespace MFarm.Map
                         currentTileDetail.wateredSinceDay = 0;
                         break;
                 }
-                
+                UpdataTileDetailToDic(currentTileDetail);
             }
 
             
@@ -143,6 +145,8 @@ namespace MFarm.Map
             currentGrid = FindObjectOfType<Grid>();
             waterTileMap = GameObject.FindGameObjectWithTag("Water").GetComponent<Tilemap>();
             digTileMap = GameObject.FindGameObjectWithTag("Dig").GetComponent<Tilemap>();
+
+            DisplayMap(SceneManager.GetActiveScene().name);
         }
 
         private void OnDigTile(TileDetail tileDetail)
@@ -155,7 +159,90 @@ namespace MFarm.Map
         }
 
 
+        private void UpdataTileDetailToDic(TileDetail tileDetail)
+        {
+            string key = SceneManager.GetActiveScene().name + " " + tileDetail.gridX + "x" + tileDetail.gridY + "y";
+
+            if (TileDetailDic.ContainsKey(key))
+            {
+                TileDetailDic[key] = tileDetail;
+            }
+        }
+
+
+        private void DisplayMap(string SceneName)
+        {
+            //TODO:后续需要保存种子信息
+            foreach (var tile in TileDetailDic)
+            {
+                string key = tile.Key;
+                TileDetail tileDetail = tile.Value;
+
+                if (key.Contains(SceneName))
+                {
+                    if (tileDetail.digSinceDay != -1)
+                    {
+                        OnDigTile(tileDetail);
+                    }
+                    if (tileDetail.wateredSinceDay != -1)
+                    {
+                        OnWaterTile(tileDetail);
+                    }
+                }
+
+            }
+
+        }
+
+
+        private void OnUpdataGameDayEvent(int gameDay, Season gameSeason)
+        {
+            foreach (var tile in TileDetailDic)
+            {
+                if (tile.Value.digSinceDay > -1)
+                {
+                    tile.Value.digSinceDay++;
+                }
+                if (tile.Value.wateredSinceDay > -1)
+                {
+                    tile.Value.wateredSinceDay = -1;
+                }
+
+                //TODO:测试
+                if (tile.Value.digSinceDay > -1 && tile.Value.seedSinceDay == -1)
+                {
+                    tile.Value.digSinceDay = -1;
+                    tile.Value.CanDig = true;
+                }
+
+            }
+
+            RefreshMapDate();
+        }
+
+        private void RefreshMapDate()
+        {
+            if (digTileMap != null)
+            {
+                digTileMap.ClearAllTiles();
+            }
+            if (waterTileMap != null)
+            {
+                waterTileMap.ClearAllTiles();
+            }
+
+            DisplayMap(SceneManager.GetActiveScene().name);
+        }
+
+
+
+
+
+
+
+
+
     }
 
-
+    
 }

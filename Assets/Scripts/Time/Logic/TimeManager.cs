@@ -90,6 +90,7 @@ public class TimeManager : MonoBehaviour
                             }
                         }
                     }
+                    EventHandler.CallUpUpdataGameDayEvent(day, (Season)seasonInMouth);
                 }
                 //小时更新
                 EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);

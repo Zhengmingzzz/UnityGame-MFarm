@@ -43,6 +43,11 @@ public static class EventHandler
         UpdataTimeUI?.Invoke(minute, hour);
     }
 
+    public static Action<int, Season> UpdataGameDayEvent;
+    public static void CallUpUpdataGameDayEvent(int GameDay, Season season)
+    {
+        UpdataGameDayEvent?.Invoke(GameDay, season);
+    }
 
 
     public static event Action<int, int, int, Season> UpdataDate;
