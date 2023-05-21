@@ -7,7 +7,7 @@ public class AnimationOverride : MonoBehaviour
     private Animator[] animators;
     [SerializeField]public List<AnimType> animType = new List<AnimType>();
     public SpriteRenderer holdItemSpriteRenderer;
-    private Dictionary<string, Animator> animDir = new Dictionary<string, Animator>();
+    private Dictionary<string, Animator> animDic = new Dictionary<string, Animator>();
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class AnimationOverride : MonoBehaviour
 
         foreach (Animator a in animators)
         {
-            animDir.Add(a.name, a);
+            animDic.Add(a.name, a);
         }
     }
 
@@ -77,7 +77,7 @@ public class AnimationOverride : MonoBehaviour
         {
             if (a.nowState == nowstate)
             {
-                animDir[a.bodyName.ToString()].runtimeAnimatorController = a.animator;
+                animDic[a.bodyName.ToString()].runtimeAnimatorController = a.animator;
             }
         }
     }
