@@ -40,7 +40,6 @@ public class CropManager : MonoBehaviour
             //不是第一次种
             else
             {
-                tileDetail.seedSinceDay++;
                 DisplayPlant(currentCropDetails, tileDetail);
             }
 

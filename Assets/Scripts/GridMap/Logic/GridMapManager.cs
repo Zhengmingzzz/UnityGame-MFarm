@@ -173,29 +173,7 @@ namespace MFarm.Map
         }
 
 
-        private void DisplayMap(string SceneName)
-        {
-            //TODO:后续需要保存种子信息
-            foreach (var tile in TileDetailDic)
-            {
-                string key = tile.Key;
-                TileDetail tileDetail = tile.Value;
-
-                if (key.Contains(SceneName))
-                {
-                    if (tileDetail.digSinceDay != -1)
-                    {
-                        OnDigTile(tileDetail);
-                    }
-                    if (tileDetail.wateredSinceDay != -1)
-                    {
-                        OnWaterTile(tileDetail);
-                    }
-                }
-
-            }
-
-        }
+        
 
 
         private void OnUpdataGameDayEvent(int gameDay, Season gameSeason)
@@ -211,13 +189,16 @@ namespace MFarm.Map
                     tile.Value.wateredSinceDay = -1;
                 }
 
-                //TODO:测试
                 if (tile.Value.digSinceDay > -1 && tile.Value.seedSinceDay == -1)
                 {
                     tile.Value.digSinceDay = -1;
                     tile.Value.CanDig = true;
+                    tile.Value.seedID = -1;
                 }
-
+                if (tile.Value.seedSinceDay != -1)
+                {
+                    tile.Value.seedSinceDay++;
+                }
             }
 
             RefreshMapDate();
@@ -233,10 +214,42 @@ namespace MFarm.Map
             {
                 waterTileMap.ClearAllTiles();
             }
+            foreach (var c in FindObjectsOfType<Crop>())
+            {
+                Destroy(c.gameObject);
+            }
 
             DisplayMap(SceneManager.GetActiveScene().name);
         }
 
+        private void DisplayMap(string SceneName)
+        {
+            foreach (var tile in TileDetailDic)
+            {
+                string key = tile.Key;
+                TileDetail tileDetail = tile.Value;
+
+                if (key.Contains(SceneName))
+                {
+                    if (tileDetail.digSinceDay != -1)
+                    {
+                        OnDigTile(tileDetail);
+                    }
+
+                    if (tileDetail.wateredSinceDay != -1)
+                    {
+                        OnWaterTile(tileDetail);
+                    }
+
+                    if (tileDetail.seedID != -1)
+                    {
+                        EventHandler.CallUpPlantEvent(tileDetail.seedID, tileDetail);
+                    }
+                }
+
+            }
+
+        }
 
 
 

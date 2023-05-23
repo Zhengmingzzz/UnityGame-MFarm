@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
     {
         second = 0;
         minute = 0;
-        hour = 7;
+        hour = 20;
         day = 1;
         mouth = 1;
         year = 2022;
@@ -90,7 +90,7 @@ public class TimeManager : MonoBehaviour
                             }
                         }
                     }
-                    EventHandler.CallUpUpdataGameDayEvent(day, (Season)seasonInMouth);
+                    EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
                 }
                 //小时更新
                 EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
@@ -100,6 +100,5 @@ public class TimeManager : MonoBehaviour
         }
                 //分钟更新
                 EventHandler.CallUpUpdataTimeUI(minute, hour);
-
     }
 }

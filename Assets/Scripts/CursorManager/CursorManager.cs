@@ -190,7 +190,7 @@ public class CursorManager : MonoBehaviour
                         }
                         break;
                     case ItemType.Seed:
-                        if (CheckTileDetailInfo.digSinceDay != -1)
+                        if (CheckTileDetailInfo.digSinceDay != -1 && CheckTileDetailInfo.seedID == -1)
                         {
                             mouseValid = true;
                             SetCursorValidColor(true);
