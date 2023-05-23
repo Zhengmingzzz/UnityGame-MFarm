@@ -189,17 +189,17 @@ public class CursorManager : MonoBehaviour
                             mouseValid = true;
                         }
                         break;
-                    //case ItemType.Seed:
-                    //    if (CheckTileDetailInfo.digSinceDay != -1)
-                    //    {
-                    //        mouseValid = true;
-                    //        SetCursorValidColor(true);
-                    //    }
-                    //    else
-                    //    {
-                    //        SetCursorValidColor(false);
-                    //    }
-                    //    break;
+                    case ItemType.Seed:
+                        if (CheckTileDetailInfo.digSinceDay != -1)
+                        {
+                            mouseValid = true;
+                            SetCursorValidColor(true);
+                        }
+                        else
+                        {
+                            SetCursorValidColor(false);
+                        }
+                        break;
                     case ItemType.HoeTool:
                         if (CheckTileDetailInfo.CanDig)
                         {

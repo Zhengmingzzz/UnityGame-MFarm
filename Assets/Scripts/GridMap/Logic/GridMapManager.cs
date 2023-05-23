@@ -132,6 +132,9 @@ namespace MFarm.Map
                         OnWaterTile(currentTileDetail);
                         currentTileDetail.wateredSinceDay = 0;
                         break;
+                    case ItemType.Seed:
+                        EventHandler.CallUpPlantEvent(clickedItemDetail.ItemID, currentTileDetail);
+                        break;
                 }
                 UpdataTileDetailToDic(currentTileDetail);
             }

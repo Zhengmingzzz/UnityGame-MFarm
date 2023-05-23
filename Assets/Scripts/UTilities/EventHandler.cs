@@ -103,7 +103,11 @@ public static class EventHandler
         executeActionAfterAnimation?.Invoke(mouseClickedWorldPosition, itemDetails);
     }
 
-
+    public static event Action<int, TileDetail> PlantEvent;
+    public static void CallUpPlantEvent(int seedID, TileDetail tileDetail)
+    {
+        PlantEvent?.Invoke(seedID, tileDetail);
+    }
 
 
 

@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
         if (EventSystem.current!=null&&!EventSystem.current.IsPointerOverGameObject())
         {
             //TODO:播放执行动画
-            //选择工具
+            //播放使用工具动画
             if (clickedItemDetail.itemType != ItemType.Commodity && clickedItemDetail.itemType != ItemType.Furniture && clickedItemDetail.itemType != ItemType.Seed)
             {
                 StartCoroutine(useTool(mouseWorldPos, clickedItemDetail));
