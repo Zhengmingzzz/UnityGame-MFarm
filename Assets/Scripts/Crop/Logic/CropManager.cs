@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CropManager : MonoBehaviour
+public class CropManager : Singleton<CropManager>
 {
     public CropDetails_SO cropDetails_SO;
 
@@ -57,7 +57,7 @@ public class CropManager : MonoBehaviour
         CropParent = GameObject.FindGameObjectWithTag("CropParent").transform;
     }
 
-    private CropDetails GetCropDetailsByID(int seedID)
+    public CropDetails GetCropDetailsByID(int seedID)
     {
         return cropDetails_SO.CropDetailsList.Find(c => c.seedID == seedID);
     }

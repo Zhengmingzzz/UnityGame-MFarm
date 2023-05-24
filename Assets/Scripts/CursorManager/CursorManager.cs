@@ -212,6 +212,14 @@ public class CursorManager : MonoBehaviour
                             mouseValid = true;
                         }
                         break;
+                    case ItemType.CollectionTool:
+                        CropDetails cropDetails = CropManager.Instance.GetCropDetailsByID(CheckTileDetailInfo.seedID);
+                        if (cropDetails.TotalGlowthDays <= CheckTileDetailInfo.seedSinceDay)
+                        {
+                            mouseValid = true;
+                        }
+                        break;
+
                 }
                 SetCursorValidColor(mouseValid);
 
