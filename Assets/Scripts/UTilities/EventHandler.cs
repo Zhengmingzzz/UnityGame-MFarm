@@ -109,8 +109,11 @@ public static class EventHandler
         PlantEvent?.Invoke(seedID, tileDetail);
     }
 
-
-
+    public static event Action<int> HarvestCropOnPlayer;
+    public static void CallUpHarvestCropOnPlayer(int seedID)
+    {
+        HarvestCropOnPlayer?.Invoke(seedID);
+    }
 
 
 }

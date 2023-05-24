@@ -60,10 +60,18 @@ public class TimeManager : MonoBehaviour
         {
             second = 0;
             minute++;
+            
             if (minute > Settings.minuteHold)
             {
+                //TODO:²âÊÔ
                 minute = 0;
-                hour++;
+                hour ++;
+                
+                if (isAccelerate)
+                {
+                    hour += 6;
+                }
+
                 if (hour > Settings.hourHold)
                 {
                     hour = 0;

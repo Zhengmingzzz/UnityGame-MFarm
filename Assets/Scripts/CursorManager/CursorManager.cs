@@ -214,9 +214,12 @@ public class CursorManager : MonoBehaviour
                         break;
                     case ItemType.CollectionTool:
                         CropDetails cropDetails = CropManager.Instance.GetCropDetailsByID(CheckTileDetailInfo.seedID);
-                        if (cropDetails.TotalGlowthDays <= CheckTileDetailInfo.seedSinceDay)
+                        if (cropDetails != null && cropDetails.CheckToolValid(selectedItemDetail.ItemID)) 
                         {
-                            mouseValid = true;
+                            if (cropDetails.TotalGlowthDays <= CheckTileDetailInfo.seedSinceDay)
+                            {
+                                mouseValid = true;
+                            }
                         }
                         break;
 

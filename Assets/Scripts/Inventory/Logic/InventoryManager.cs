@@ -23,14 +23,45 @@ namespace MFarm.Inventory
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
+            EventHandler.HarvestCropOnPlayer += OnHarvestCropOnPlayer;
         }
 
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
+            EventHandler.HarvestCropOnPlayer -= OnHarvestCropOnPlayer;
+
         }
 
+        private void OnHarvestCropOnPlayer(int seedID)
+        {
+            int Exist_Index = isExistItem(seedID);
+            int NULL_Index = bagIsFull();
 
+
+
+            InventoryType newBagPos;
+            if (Exist_Index != -1)
+            {
+                newBagPos.ItemID = seedID;
+                newBagPos.ItemAmount = playerBag.itemList[Exist_Index].ItemAmount + 1;
+                playerBag.itemList[Exist_Index] = newBagPos;
+
+            }
+            else if (NULL_Index == -1)
+            {
+                return;
+            }
+            else if (NULL_Index != -1)
+            {
+                newBagPos.ItemID = seedID;
+                newBagPos.ItemAmount = 1;
+                playerBag.itemList[NULL_Index] = newBagPos;
+            }
+
+            EventHandler.CallUpdataInventoryUI(InventoryLocation.Player, playerBag.itemList);
+
+        }
 
         public ItemDetails GetItemDetailsByID(int ItemID)
         {
@@ -70,25 +101,27 @@ namespace MFarm.Inventory
             }
             return -1;
         }
+        int isExistItem(int itemID)
+        {
+            int count = 0;
+            foreach (InventoryType i in playerBag.itemList)
+            {
+                if (itemID == i.ItemID)
+                {
+                    return count;
+                }
+                count++;
+            }
+            return -1;
+        }
 
         
+
         public void PickedUpItem(RenderItem item , bool toDestroy)
         {
-            int isExistItem()
-            {
-                int count = 0;
-                foreach (InventoryType i in playerBag.itemList)
-                {
-                    if (item.ItemID == i.ItemID)
-                    {
-                        return count;
-                    }
-                    count++;
-                }
-                return -1;
-            }
+            
 
-            int Exist_Index = isExistItem();
+            int Exist_Index = isExistItem(item.ItemID);
             int NULL_Index = bagIsFull();
 
 

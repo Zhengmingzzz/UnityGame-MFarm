@@ -9,7 +9,8 @@ public class CropDetails
     public int seedID;
     public Season[] season;
     public int[] growthDays;
-    public int TotalGlowthDays { get 
+    public int TotalGlowthDays { 
+        get 
         {
             int amount = 0;
             foreach (int day in growthDays)
@@ -49,6 +50,16 @@ public class CropDetails
     public bool particalEffect;
 
 
-
+    public bool CheckToolValid(int toolID)
+    {
+        foreach (int i in harvestToolID)
+        {
+            if (i == toolID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

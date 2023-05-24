@@ -84,8 +84,13 @@ public class CropManager : Singleton<CropManager>
         Vector3 CropPos = new Vector3(tileDetails.gridX + 0.5f, tileDetails.gridY + 0.5f, 0);
         Sprite cropSprite = cropDetails.seedSprite[currentStage];
 
+
+
         GameObject cropInstance = Instantiate(cropPrefab, CropPos, Quaternion.identity, CropParent);
         cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
+
+
+        cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
     }
 
 
@@ -95,7 +100,10 @@ public class CropManager : Singleton<CropManager>
         int currentStage = cropGlowthStageAmount;
         int dayCounter = tileDetail.seedSinceDay;
 
-
+        if (dayCounter >= cropDetails.TotalGlowthDays)
+        {
+            return cropGlowthStageAmount;
+        }
         for (int i = 0; i < cropGlowthStageAmount; i++)
         {
             dayCounter -= cropDetails.growthDays[i];
@@ -104,6 +112,10 @@ public class CropManager : Singleton<CropManager>
                 currentStage = i;
                 break;
             }
+        }
+        if (currentStage == cropGlowthStageAmount)
+        {
+            currentStage--;
         }
         return currentStage;
 

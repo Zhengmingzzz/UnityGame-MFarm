@@ -24,14 +24,34 @@ public class AnimationOverride : MonoBehaviour
     {
         EventHandler.ItemSelectEvent += HoldItemInScene;
         EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
+        EventHandler.HarvestCropOnPlayer += OnHarvestCropOnPlayer;
     }
 
     private void OnDisable()
     {
         EventHandler.ItemSelectEvent -= HoldItemInScene;
         EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
+        EventHandler.HarvestCropOnPlayer -= OnHarvestCropOnPlayer;
+
     }
 
+    private void OnHarvestCropOnPlayer(int seedID)
+    {
+        Sprite cropSprite = MFarm.Inventory.InventoryManager.Instance.GetItemDetailsByID(seedID).itemOnWorldSprite;
+        if (holdItemSpriteRenderer.enabled == false)
+        {
+            StartCoroutine( ShowHarvestCrop(cropSprite));
+        }
+    }
+
+    IEnumerator ShowHarvestCrop(Sprite cropSprite)
+    {
+        holdItemSpriteRenderer.sprite = cropSprite;
+        holdItemSpriteRenderer.enabled = true;
+
+        yield return new WaitForSeconds(0.1f);
+        holdItemSpriteRenderer.enabled = false;
+    }
 
     public void HoldItemInScene(ItemDetails itemdetails, bool isSelect)
     {
@@ -46,6 +66,7 @@ public class AnimationOverride : MonoBehaviour
                 ItemType.Furniture => NowState.Carry,
                 ItemType.HoeTool => NowState.Hoe,
                 ItemType.WaterTool=>NowState.Water,
+                ItemType.CollectionTool=>NowState.Harvest,
                 _ => NowState.None
             };
         }

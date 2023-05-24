@@ -15,22 +15,22 @@ MonoBehaviour:
   itemList:
   - ItemID: 101
     ItemAmount: 99
-  - ItemID: 102
-    ItemAmount: 2
+  - ItemID: 105
+    ItemAmount: 1
   - ItemID: 103
     ItemAmount: 2
-  - ItemID: 1002
+  - ItemID: 102
     ItemAmount: 2
   - ItemID: 2001
-    ItemAmount: 89
+    ItemAmount: 86
   - ItemID: 3001
     ItemAmount: 2
   - ItemID: 106
     ItemAmount: 1
   - ItemID: 1001
     ItemAmount: 4
-  - ItemID: 0
-    ItemAmount: 0
+  - ItemID: 1002
+    ItemAmount: 2
   - ItemID: 0
     ItemAmount: 0
   - ItemID: 0

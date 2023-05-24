@@ -15,7 +15,7 @@ MonoBehaviour:
   CropDetailsList:
   - seedID: 1001
     season: 0000000002000000
-    growthDays: 0100000002000000020000000300000003000000
+    growthDays: 0100000002000000020000000200000001000000
     seedPrefabs:
     - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
     - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
@@ -28,12 +28,12 @@ MonoBehaviour:
     - {fileID: -1012976577, guid: bd1655396b777431e85369611fc36aed, type: 3}
     - {fileID: -1730499155, guid: bd1655396b777431e85369611fc36aed, type: 3}
     - {fileID: -1080373613, guid: bd1655396b777431e85369611fc36aed, type: 3}
-    harvestToolID: 00000000
-    harvestActionCount: 
-    TransferNewItemID: 105
+    harvestToolID: 69000000
+    harvestActionCount: 01000000
+    TransferNewItemID: -1
     productedItemID: d2070000
     MinAmount: 01000000
-    MaxAmount: 
+    MaxAmount: 03000000
     spawnRadius: 3
     dayToReglow: 0
     ReglowTimes: 0

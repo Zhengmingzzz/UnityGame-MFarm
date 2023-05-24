@@ -135,11 +135,31 @@ namespace MFarm.Map
                     case ItemType.Seed:
                         EventHandler.CallUpPlantEvent(clickedItemDetail.ItemID, currentTileDetail);
                         break;
+                    case ItemType.CollectionTool:
+                        Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
+                        currentCrop.ToolActionProcess(clickedItemDetail.ItemID);
+                        break;
                 }
                 UpdataTileDetailToDic(currentTileDetail);
             }
 
             
+        }
+
+        private Crop FindCropByMouseWorldPos(Vector3 mouseClickedWorldPos)
+        {
+            Collider2D[] colliders = Physics2D.OverlapPointAll(mouseClickedWorldPos);
+            Crop currentCrop = null;
+
+            foreach (Collider2D c in colliders)
+            {
+                Crop crop = c.GetComponent<Crop>();
+                if (crop != null)
+                {
+                    currentCrop = crop;
+                }
+            }
+            return currentCrop;
         }
 
 
