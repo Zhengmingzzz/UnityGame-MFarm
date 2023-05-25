@@ -26,7 +26,6 @@ public class CursorManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
 
         cursorCanvasTransfrom = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         CursorImage = cursorCanvasTransfrom.GetChild(0).GetComponent<Image>();
@@ -65,10 +64,6 @@ public class CursorManager : MonoBehaviour
             OnmouseClicked();
         }
 
-        if (Cursor.visible != false && Application.isPlaying)
-        {
-            Cursor.visible = false;
-        }
 
     }
 
@@ -161,6 +156,21 @@ public class CursorManager : MonoBehaviour
 
     private void CheckCursorValid()
     {
+
+
+
+        if (!new Rect(0, 0, Screen.width, Screen.height).Contains(Input.mousePosition))
+        {
+            Cursor.visible = true;
+            Debug.Log(1);
+        }
+        else
+        {
+            Cursor.visible = false;
+            Debug.Log(2);
+
+        }
+
 
         mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
