@@ -36,7 +36,34 @@ MonoBehaviour:
     MaxAmount: 03000000
     spawnRadius: 3
     dayToReglow: 0
-    ReglowTimes: 0
+    ReglowTimes: -1
+    GenarateAtPlayerHead: 1
+    haveAnimation: 0
+    particalEffect: 0
+  - seedID: 2001
+    season: 0000000002000000
+    growthDays: 0100000002000000020000000600000001000000
+    seedPrefabs:
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    seedSprite:
+    - {fileID: 335049101, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -1150923953, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -270931293, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: 546229442, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -1031843392, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    harvestToolID: 69000000
+    harvestActionCount: 01000000
+    TransferNewItemID: -1
+    productedItemID: d1070000
+    MinAmount: 05000000
+    MaxAmount: 0a000000
+    spawnRadius: 3
+    dayToReglow: 8
+    ReglowTimes: 3
     GenarateAtPlayerHead: 1
     haveAnimation: 0
     particalEffect: 0

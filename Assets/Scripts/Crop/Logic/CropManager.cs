@@ -42,7 +42,7 @@ public class CropManager : Singleton<CropManager>
             {
                 DisplayPlant(currentCropDetails, tileDetail);
             }
-
+             
         }
     }
 
@@ -59,6 +59,13 @@ public class CropManager : Singleton<CropManager>
 
     public CropDetails GetCropDetailsByID(int seedID)
     {
+        foreach (var i in cropDetails_SO.CropDetailsList)
+        {
+            if (i.seedID == seedID)
+            {
+                return i;
+            }
+        }
         return cropDetails_SO.CropDetailsList.Find(c => c.seedID == seedID);
     }
 

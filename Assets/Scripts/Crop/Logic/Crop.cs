@@ -8,11 +8,12 @@ public class Crop : MonoBehaviour
 
     private int harvestActionCount;
 
+    private TileDetail tileDetail;
 
 
-
-    public void ToolActionProcess(int toolID)
+    public void ToolActionProcess(int toolID,TileDetail tileDetail)
     {
+        this.tileDetail = tileDetail;
         int requirActionCount = GetRequirCount(toolID);
         if (requirActionCount == -1) return;
 
@@ -71,7 +72,32 @@ public class Crop : MonoBehaviour
                 }
                 //否则
                 //生成物品在地图中
+                else
+                {
+
+                }
             }
+
+            if (tileDetail != null)
+            {
+                tileDetail.harvestTimes++;
+
+                if (cropDetails.ReglowTimes > tileDetail.harvestTimes + 1)
+                {
+                    tileDetail.seedSinceDay -= cropDetails.dayToReglow;
+                }
+                else
+                {
+                    tileDetail.harvestTimes = -1;
+                    tileDetail.seedID = -1;
+                    tileDetail.seedSinceDay = -1;
+                }
+
+                EventHandler.CallUpRefleshMapDateEvent();
+
+            }
+
+
         }
 
     }

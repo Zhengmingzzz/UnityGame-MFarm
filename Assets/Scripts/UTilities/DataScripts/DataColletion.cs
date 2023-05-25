@@ -82,5 +82,6 @@ public class TileDetail
     public int wateredSinceDay = -1;
     public int seedID = -1;
     public int seedSinceDay = -1;
+    public int harvestTimes = -1;
 
 }

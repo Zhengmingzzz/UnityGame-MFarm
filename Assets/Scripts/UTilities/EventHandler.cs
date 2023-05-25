@@ -116,4 +116,10 @@ public static class EventHandler
     }
 
 
+    public static event Action RefleshMapDateEvent;
+    public static void CallUpRefleshMapDateEvent()
+    {
+        RefleshMapDateEvent?.Invoke();
+    }
+
 }

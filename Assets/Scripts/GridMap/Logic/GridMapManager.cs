@@ -37,6 +37,7 @@ namespace MFarm.Map
             EventHandler.AfterLoadSceneEvent += OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation += OnExecuteActionAfterAnimation;
             EventHandler.UpdataGameDayEvent += OnUpdataGameDayEvent;
+            EventHandler.RefleshMapDateEvent += OnRefleshMapDateEvent;
         }
 
         private void OnDisable()
@@ -44,9 +45,14 @@ namespace MFarm.Map
             EventHandler.AfterLoadSceneEvent -= OnAfterLoadSceneEvent;
             EventHandler.executeActionAfterAnimation -= OnExecuteActionAfterAnimation;
             EventHandler.UpdataGameDayEvent -= OnUpdataGameDayEvent;
+            EventHandler.RefleshMapDateEvent -= OnRefleshMapDateEvent;
 
         }
 
+        private void OnRefleshMapDateEvent()
+        {
+            RefreshMapDate();
+        }
 
         private void GetmapDataToDic(MapData_SO mapData_SO)
         {
@@ -137,7 +143,7 @@ namespace MFarm.Map
                         break;
                     case ItemType.CollectionTool:
                         Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
-                        currentCrop.ToolActionProcess(clickedItemDetail.ItemID);
+                        currentCrop.ToolActionProcess(clickedItemDetail.ItemID, currentTileDetail) ;
                         break;
                 }
                 UpdataTileDetailToDic(currentTileDetail);

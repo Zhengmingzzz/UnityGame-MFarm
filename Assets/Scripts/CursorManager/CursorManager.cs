@@ -162,12 +162,10 @@ public class CursorManager : MonoBehaviour
         if (!new Rect(0, 0, Screen.width, Screen.height).Contains(Input.mousePosition))
         {
             Cursor.visible = true;
-            Debug.Log(1);
         }
         else
         {
             Cursor.visible = false;
-            Debug.Log(2);
 
         }
 
