@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         mouseDisable = true;
         isUseingTool = true;
         mouseX = mouseWorldPos.x - this.transform.position.x;
-        mouseY = mouseWorldPos.y - this.transform.position.y;
+        mouseY = mouseWorldPos.y - (this.transform.position.y + 0.85f) ;
 
         if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
         {

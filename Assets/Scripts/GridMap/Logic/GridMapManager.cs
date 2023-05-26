@@ -119,6 +119,8 @@ namespace MFarm.Map
         {
             Vector3Int MousePositionInGrid = currentGrid.WorldToCell(clickedWorldPos);
             TileDetail currentTileDetail = getTileDetailByPos(MousePositionInGrid);
+            Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
+
 
             if (currentTileDetail != null && clickedItemDetail != null)
             {
@@ -141,9 +143,17 @@ namespace MFarm.Map
                     case ItemType.Seed:
                         EventHandler.CallUpPlantEvent(clickedItemDetail.ItemID, currentTileDetail);
                         break;
+                    case ItemType.ChopTool:
+                        if (currentCrop != null)
+                        {
+                            currentCrop.ToolActionProcess(clickedItemDetail.ItemID, currentCrop.tileDetail);
+                        }
+                        break;
                     case ItemType.CollectionTool:
-                        Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
-                        currentCrop.ToolActionProcess(clickedItemDetail.ItemID, currentTileDetail) ;
+                        if (currentCrop != null)
+                        {
+                            currentCrop.ToolActionProcess(clickedItemDetail.ItemID, currentTileDetail);
+                        }
                         break;
                 }
                 UpdataTileDetailToDic(currentTileDetail);
@@ -152,17 +162,18 @@ namespace MFarm.Map
             
         }
 
-        private Crop FindCropByMouseWorldPos(Vector3 mouseClickedWorldPos)
+        public Crop FindCropByMouseWorldPos(Vector3 mouseClickedWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseClickedWorldPos);
             Crop currentCrop = null;
 
             foreach (Collider2D c in colliders)
             {
-                Crop crop = c.GetComponent<Crop>();
+                Crop crop = c.gameObject.GetComponent<Crop>();
                 if (crop != null)
                 {
                     currentCrop = crop;
+                    break;
                 }
             }
             return currentCrop;

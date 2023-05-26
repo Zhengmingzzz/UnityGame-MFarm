@@ -8,30 +8,79 @@ public class Crop : MonoBehaviour
 
     private int harvestActionCount;
 
-    private TileDetail tileDetail;
+    public TileDetail tileDetail;
+
+    private Animator animator;
+    public bool canHarvest => cropDetails.TotalGlowthDays <= tileDetail.seedSinceDay;
+
+    private Transform playerTransform => FindObjectOfType<Player>().transform;
 
 
     public void ToolActionProcess(int toolID,TileDetail tileDetail)
     {
         this.tileDetail = tileDetail;
         int requirActionCount = GetRequirCount(toolID);
-        if (requirActionCount == -1) return;
+        if (requirActionCount == -1)
+        {
+            return;
 
+        }
 
         if (harvestActionCount < requirActionCount)
         {
+
             harvestActionCount++;
 
             //TODO:播放动画
+            if (cropDetails.haveAnimation)
+            {
+                animator = this.GetComponentInChildren<Animator>();
+                
+
+                if (animator != null && playerTransform != null)
+                {
+                    if (playerTransform.position.x > tileDetail.gridX)
+                        animator.SetTrigger("Cut_Left");
+                    else
+                        animator.SetTrigger("Cut_Right");
+                }
+
+            }
             //TODO:产生粒子效果
         }
-        if (harvestActionCount >= requirActionCount)
+        else
         {
-            SpawnCrop();
+            if (animator != null && playerTransform != null)
+            {
+                if (playerTransform.position.x > this.transform.position.x)
+                    animator.SetTrigger("CutDown_Left");
+                else
+                    animator.SetTrigger("CutDown_Right");
+                StartCoroutine(HarvestAfterAniamtion());
 
-
+            }
+            else
+            {
+                SpawnCrop();
+            }
         }
     }
+
+    IEnumerator HarvestAfterAniamtion()
+    {
+        if (cropDetails.haveAnimation)
+        {
+            while (!animator.GetCurrentAnimatorStateInfo(0).IsName("END"))
+            {
+                yield return null;
+            }
+
+            SpawnCrop();
+        }
+
+        
+    }
+
 
     private int GetRequirCount(int toolID)
     {
@@ -74,7 +123,15 @@ public class Crop : MonoBehaviour
                 //生成物品在地图中
                 else
                 {
+                    int minX = tileDetail.gridX - cropDetails.spawnRadius;
+                    int maxX = tileDetail.gridX + cropDetails.spawnRadius;
 
+                    int minY = tileDetail.gridY - cropDetails.spawnRadius;
+                    int maxY = tileDetail.gridY + cropDetails.spawnRadius;
+
+                    Vector3 RandomTargetPos = new Vector3(Random.Range(minX, maxX + 1), Random.Range(minY, maxY + 1));
+
+                    EventHandler.CallUpDropItemEvent(cropDetails.productedItemID[i], RandomTargetPos);
                 }
             }
 
@@ -86,12 +143,24 @@ public class Crop : MonoBehaviour
                 {
                     tileDetail.seedSinceDay -= cropDetails.dayToReglow;
                 }
+                else if (cropDetails.TransferNewItemID != -1)
+                {
+                    tileDetail.seedID = cropDetails.TransferNewItemID;
+                    //tileDetail.harvestTimes
+                }
                 else
                 {
                     tileDetail.harvestTimes = -1;
                     tileDetail.seedID = -1;
                     tileDetail.seedSinceDay = -1;
                 }
+
+
+                if (cropDetails.TransferNewItemID > 0)
+                {
+                    CropManager.Instance.DisplayPlant(CropManager.Instance.GetCropDetailsByID(cropDetails.TransferNewItemID), tileDetail);
+                }
+
 
                 EventHandler.CallUpRefleshMapDateEvent();
 
@@ -101,7 +170,6 @@ public class Crop : MonoBehaviour
         }
 
     }
-
 
 
 }

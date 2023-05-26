@@ -83,7 +83,7 @@ public class CropManager : Singleton<CropManager>
 
     
 
-    private void DisplayPlant(CropDetails cropDetails, TileDetail tileDetails)
+    public void DisplayPlant(CropDetails cropDetails, TileDetail tileDetails)
     {
         int currentStage = GetCropGlowthStage(cropDetails, tileDetails);
 
@@ -98,6 +98,8 @@ public class CropManager : Singleton<CropManager>
 
 
         cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
+        cropInstance.GetComponent<Crop>().tileDetail = tileDetails;
+
     }
 
 
@@ -122,7 +124,12 @@ public class CropManager : Singleton<CropManager>
         }
         if (currentStage == cropGlowthStageAmount)
         {
+
             currentStage--;
+            if (currentStage == -1)
+            {
+                currentStage = 0;
+            }
         }
         return currentStage;
 

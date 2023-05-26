@@ -40,7 +40,7 @@ MonoBehaviour:
     GenarateAtPlayerHead: 1
     haveAnimation: 0
     particalEffect: 0
-  - seedID: 2001
+  - seedID: 1003
     season: 0000000002000000
     growthDays: 0100000002000000020000000600000001000000
     seedPrefabs:
@@ -65,5 +65,49 @@ MonoBehaviour:
     dayToReglow: 8
     ReglowTimes: 3
     GenarateAtPlayerHead: 1
+    haveAnimation: 0
+    particalEffect: 0
+  - seedID: 1011
+    season: 000000000100000002000000
+    growthDays: 01000000020000000100000001000000
+    seedPrefabs:
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 527788175540891006, guid: 1c2584f4648f7da40b0fd294945c6915, type: 3}
+    seedSprite:
+    - {fileID: 21300000, guid: b344f2cee7ac54d7ab52e493a1bb4ee7, type: 3}
+    - {fileID: 21300000, guid: c54002cd9727a43329d7f75c50778b57, type: 3}
+    - {fileID: 21300000, guid: 4590cd3fefdd74b22ae749a122189ece, type: 3}
+    - {fileID: 21300000, guid: e12c6f18fb50544fea7f5245a9a2aeff, type: 3}
+    harvestToolID: 65000000
+    harvestActionCount: 05000000
+    TransferNewItemID: 3501
+    productedItemID: f3030000d3070000
+    MinAmount: 0300000005000000
+    MaxAmount: 0500000007000000
+    spawnRadius: 3
+    dayToReglow: -1
+    ReglowTimes: -1
+    GenarateAtPlayerHead: 0
+    haveAnimation: 1
+    particalEffect: 0
+  - seedID: 3501
+    season: 00000000010000000200000003000000
+    growthDays: 00000000
+    seedPrefabs:
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    seedSprite:
+    - {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
+    harvestToolID: 
+    harvestActionCount: 
+    TransferNewItemID: -1
+    productedItemID: 
+    MinAmount: 
+    MaxAmount: 
+    spawnRadius: 0
+    dayToReglow: -1
+    ReglowTimes: -1
+    GenarateAtPlayerHead: 0
     haveAnimation: 0
     particalEffect: 0

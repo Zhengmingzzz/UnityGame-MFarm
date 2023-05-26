@@ -181,10 +181,11 @@ public class CursorManager : MonoBehaviour
             if (selectedItemDetail != null && CheckTileDetailInfo != null)
             {
                 mouseValid = false;
+                CropDetails cropDetails = CropManager.Instance.GetCropDetailsByID(CheckTileDetailInfo.seedID);
+
                 //TODO:添加新的工具
                 switch (selectedItemDetail.itemType)
                 {
-
                     case ItemType.Commodity:
                         if (CheckTileDetailInfo.CanDropItem == true)
                         {
@@ -208,6 +209,7 @@ public class CursorManager : MonoBehaviour
                             SetCursorValidColor(false);
                         }
                         break;
+
                     case ItemType.HoeTool:
                         if (CheckTileDetailInfo.CanDig)
                         {
@@ -220,8 +222,14 @@ public class CursorManager : MonoBehaviour
                             mouseValid = true;
                         }
                         break;
+                    case ItemType.ChopTool:
+                        Crop crop = MFarm.Map.GridMapManager.Instance.FindCropByMouseWorldPos(mouseWorldPos);
+                        if (crop != null && crop.cropDetails.CheckToolValid(selectedItemDetail.ItemID) && crop.canHarvest)
+                        {
+                            mouseValid = true;
+                        }
+                        break;
                     case ItemType.CollectionTool:
-                        CropDetails cropDetails = CropManager.Instance.GetCropDetailsByID(CheckTileDetailInfo.seedID);
                         if (cropDetails != null && cropDetails.CheckToolValid(selectedItemDetail.ItemID)) 
                         {
                             if (cropDetails.TotalGlowthDays <= CheckTileDetailInfo.seedSinceDay)
