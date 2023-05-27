@@ -48,6 +48,7 @@ public class CropDetails
     public bool GenarateAtPlayerHead;
     public bool haveAnimation;
     public bool particalEffect;
+    public E_PESType[] ParticalEffectSystem;
 
 
     public bool CheckToolValid(int toolID)

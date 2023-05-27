@@ -9,6 +9,7 @@ public class CropManager : Singleton<CropManager>
     private Transform CropParent;
 
     private Season currentSeason = Season.´ºÌì;
+
     private void OnEnable()
     {
         EventHandler.PlantEvent += OnPlantEvent;

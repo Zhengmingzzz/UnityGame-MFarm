@@ -122,4 +122,19 @@ public static class EventHandler
         RefleshMapDateEvent?.Invoke();
     }
 
+
+    public static event Action<E_PESType, Vector3> PEInstantiateEvent;
+    public static void CallUpPEInstantiateEvent(E_PESType type,Vector3 pos)
+    {
+        PEInstantiateEvent?.Invoke(type, pos);
+    }
+
+
+
+
+
+
+
+
+
 }

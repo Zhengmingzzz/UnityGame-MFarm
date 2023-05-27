@@ -117,6 +117,19 @@ MonoBehaviour:
     GenarateAtPlayerHead: 0
     haveAnimation: 0
     particalEffect: 0
+    ParticalEffectSystem: 
+  tileDetail:
+    gridX: 0
+    gridY: 0
+    CanDig: 0
+    CanDropItem: 0
+    CanPlaceFurniture: 0
+    NPC_Obstacle: 0
+    digSinceDay: -1
+    wateredSinceDay: -1
+    seedID: -1
+    seedSinceDay: -1
+    harvestTimes: -1
 --- !u!61 &1910740965093036459
 BoxCollider2D:
   m_ObjectHideFlags: 0

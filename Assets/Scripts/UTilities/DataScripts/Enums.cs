@@ -43,3 +43,8 @@ public enum E_GridType
 {
     CanDig,CanDrop, CanPlaceFurniture,NPC_Obstacle,
 }
+
+public enum E_PESType
+{
+    None,LeaveFalling01,LeaveFalling02,Rock,
+}

@@ -85,3 +85,10 @@ public class TileDetail
     public int harvestTimes = -1;
 
 }
+
+[System.Serializable]
+public struct S_ParticalEffect
+{
+    public E_PESType E_particalSystem;
+    public GameObject ParticalEffectPrefab;
+}

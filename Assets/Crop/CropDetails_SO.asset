@@ -40,6 +40,7 @@ MonoBehaviour:
     GenarateAtPlayerHead: 1
     haveAnimation: 0
     particalEffect: 0
+    ParticalEffectSystem: 
   - seedID: 1003
     season: 0000000002000000
     growthDays: 0100000002000000020000000600000001000000
@@ -67,6 +68,7 @@ MonoBehaviour:
     GenarateAtPlayerHead: 1
     haveAnimation: 0
     particalEffect: 0
+    ParticalEffectSystem: 
   - seedID: 1011
     season: 000000000100000002000000
     growthDays: 01000000020000000100000001000000
@@ -91,7 +93,8 @@ MonoBehaviour:
     ReglowTimes: -1
     GenarateAtPlayerHead: 0
     haveAnimation: 1
-    particalEffect: 0
+    particalEffect: 1
+    ParticalEffectSystem: 01000000
   - seedID: 3501
     season: 00000000010000000200000003000000
     growthDays: 00000000
@@ -111,3 +114,4 @@ MonoBehaviour:
     GenarateAtPlayerHead: 0
     haveAnimation: 0
     particalEffect: 0
+    ParticalEffectSystem: 

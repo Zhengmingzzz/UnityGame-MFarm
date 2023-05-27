@@ -47,6 +47,14 @@ public class Crop : MonoBehaviour
 
             }
             //TODO:产生粒子效果
+            if (cropDetails.particalEffect)
+            {
+                for (int i = 0; i < cropDetails.ParticalEffectSystem.Length; i++)
+                {
+                    EventHandler.CallUpPEInstantiateEvent(cropDetails.ParticalEffectSystem[i], new Vector3(tileDetail.gridX, tileDetail.gridY + 3f, 0));
+
+                }
+            }
         }
         else
         {
@@ -129,7 +137,20 @@ public class Crop : MonoBehaviour
                     int minY = tileDetail.gridY - cropDetails.spawnRadius;
                     int maxY = tileDetail.gridY + cropDetails.spawnRadius;
 
-                    Vector3 RandomTargetPos = new Vector3(Random.Range(minX, maxX + 1), Random.Range(minY, maxY + 1));
+                    Vector3 RandomTargetPos = Vector3.zero;
+
+                    if (playerTransform.position.x > this.transform.position.x)
+                    {
+                        RandomTargetPos = new Vector3(Random.Range(minX, tileDetail.gridX), Random.Range(minY, maxY + 1));
+
+                    }
+                    else
+                    {
+                        RandomTargetPos = new Vector3(Random.Range(tileDetail.gridX, maxX + 1), Random.Range(minY, maxY + 1));
+
+                    }
+
+
 
                     EventHandler.CallUpDropItemEvent(cropDetails.productedItemID[i], RandomTargetPos);
                 }
