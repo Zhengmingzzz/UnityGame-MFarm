@@ -24,7 +24,7 @@ namespace MFarm.Inventory
 
 
 
-        private InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
+        public InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
 
 
         private void Start()
