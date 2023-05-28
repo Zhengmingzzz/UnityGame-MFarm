@@ -152,7 +152,7 @@ public class Crop : MonoBehaviour
 
 
 
-                    EventHandler.CallUpDropItemEvent(cropDetails.productedItemID[i], RandomTargetPos);
+                    EventHandler.CallUpDropItemEvent(cropDetails.productedItemID[i], new Vector3(tileDetail.gridX, tileDetail.gridY, 0), RandomTargetPos) ;
                 }
             }
 

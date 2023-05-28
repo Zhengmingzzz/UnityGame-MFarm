@@ -116,13 +116,13 @@ namespace MFarm.Inventory
 
         }
 
-        private void OnDropItemEvent(int ItemID, Vector3 GridPos)
+        private void OnDropItemEvent(int ItemID,Vector3 fromPos ,Vector3 GridPos)
         {
             //TODO:实现扔东西效果
-            var item = Instantiate(DroppedItemPrefab, playerTransform.position, Quaternion.identity, itemParent);
+            var item = Instantiate(DroppedItemPrefab, fromPos, Quaternion.identity, itemParent) ;
             item.ItemID = ItemID;
 
-            var direction = (GridPos - playerTransform.position).normalized;
+            var direction = (GridPos - fromPos).normalized;
 
             item.GetComponent<DroppedItem>().InitDroppedItem(GridPos, direction);
         }

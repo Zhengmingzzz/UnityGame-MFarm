@@ -220,7 +220,7 @@ namespace MFarm.Inventory
             
         }
 
-        private void OnDropItemEvent(int itemID, Vector3 GridPos)
+        private void OnDropItemEvent(int itemID, Vector3 fromPos,Vector3 GridPos)
         {
             RemoveItemAmount(itemID, 1);
         }

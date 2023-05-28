@@ -20,7 +20,7 @@ namespace MFarm.Map
 
         private Grid currentGrid;
 
-
+        private Transform playerTransform => FindObjectOfType<Player>().transform;
 
         private void Start()
         {
@@ -128,7 +128,7 @@ namespace MFarm.Map
                 {
                     //TODO:添加其他类型的实现
                     case ItemType.Commodity:
-                        EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, MousePositionInGrid);
+                        EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, playerTransform.position, MousePositionInGrid) ;
                         break;
                     case ItemType.HoeTool:
                         OnDigTile(currentTileDetail);
