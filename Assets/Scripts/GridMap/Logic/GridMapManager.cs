@@ -120,7 +120,13 @@ namespace MFarm.Map
             Vector3Int MousePositionInGrid = currentGrid.WorldToCell(clickedWorldPos);
             TileDetail currentTileDetail = getTileDetailByPos(MousePositionInGrid);
             Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
-
+            if (clickedItemDetail.itemType == ItemType.ChopTool)
+            {
+                if (currentCrop != null)
+                {
+                    currentTileDetail = getTileDetailByPos(new Vector3Int(currentCrop.tileDetail.gridX, currentCrop.tileDetail.gridY, 0));
+                }
+            }
 
             if (currentTileDetail != null && clickedItemDetail != null)
             {

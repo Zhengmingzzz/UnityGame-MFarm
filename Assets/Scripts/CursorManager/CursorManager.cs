@@ -176,8 +176,19 @@ public class CursorManager : MonoBehaviour
 
         if (!isTransition && isSelected)
         {
-            TileDetail CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(mouseGridPos);
-
+            TileDetail CheckTileDetailInfo = null;
+            Crop crop = MFarm.Map.GridMapManager.Instance.FindCropByMouseWorldPos(mouseWorldPos);
+            if (selectedItemDetail.itemType == ItemType.ChopTool)
+            {
+                if (crop != null)
+                {
+                    CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(new Vector3Int(crop.tileDetail.gridX, crop.tileDetail.gridY, 0));
+                }
+            }
+            else 
+            {
+                CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(mouseGridPos);
+            }
             if (selectedItemDetail != null && CheckTileDetailInfo != null)
             {
                 mouseValid = false;
@@ -223,7 +234,6 @@ public class CursorManager : MonoBehaviour
                         }
                         break;
                     case ItemType.ChopTool:
-                        Crop crop = MFarm.Map.GridMapManager.Instance.FindCropByMouseWorldPos(mouseWorldPos);
                         if (crop != null && crop.cropDetails.CheckToolValid(selectedItemDetail.ItemID) && crop.canHarvest)
                         {
                             mouseValid = true;

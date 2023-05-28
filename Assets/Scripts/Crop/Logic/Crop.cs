@@ -15,6 +15,8 @@ public class Crop : MonoBehaviour
 
     private Transform playerTransform => FindObjectOfType<Player>().transform;
 
+    bool isusingAnimation = false;
+
 
     public void ToolActionProcess(int toolID,TileDetail tileDetail)
     {
@@ -58,7 +60,7 @@ public class Crop : MonoBehaviour
         }
         else
         {
-            if (animator != null && playerTransform != null)
+            if (animator != null && playerTransform != null && !isusingAnimation)
             {
                 if (playerTransform.position.x > this.transform.position.x)
                     animator.SetTrigger("CutDown_Left");
@@ -76,6 +78,7 @@ public class Crop : MonoBehaviour
 
     IEnumerator HarvestAfterAniamtion()
     {
+        isusingAnimation = true;
         if (cropDetails.haveAnimation)
         {
             while (!animator.GetCurrentAnimatorStateInfo(0).IsName("END"))
@@ -85,7 +88,7 @@ public class Crop : MonoBehaviour
 
             SpawnCrop();
         }
-
+        isusingAnimation = false;
         
     }
 
