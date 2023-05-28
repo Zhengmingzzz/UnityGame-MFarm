@@ -102,13 +102,13 @@ MonoBehaviour:
     - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
     seedSprite:
     - {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
-    harvestToolID: 
-    harvestActionCount: 
+    harvestToolID: 65000000
+    harvestActionCount: 04000000
     TransferNewItemID: -1
-    productedItemID: 
-    MinAmount: 
-    MaxAmount: 
-    spawnRadius: 0
+    productedItemID: d3070000
+    MinAmount: 03000000
+    MaxAmount: 05000000
+    spawnRadius: 2
     dayToReglow: -1
     ReglowTimes: -1
     GenarateAtPlayerHead: 0
