@@ -129,9 +129,12 @@ public static class EventHandler
         PEInstantiateEvent?.Invoke(type, pos);
     }
 
+    public static event Action SaveItemPrefabEvent;
 
-
-
+    public static void CallUpSaveItemPrefabEvent()
+    {
+        SaveItemPrefabEvent?.Invoke();
+    }
 
 
 

@@ -17,18 +17,31 @@ namespace MFarm.Map
         [Header("≥°æ∞–≈œ¢")]
         public List<MapData_SO> mapData_SO_List;
         private Dictionary<string, TileDetail> TileDetailDic = new Dictionary<string, TileDetail>();
+        private Dictionary<string, bool> FirstLoadSceneDic = new();
 
         private Grid currentGrid;
 
+
         private Transform playerTransform => FindObjectOfType<Player>().transform;
 
-        private void Start()
-        {
 
+        protected override void Awake()
+        {
+            base.Awake();
             foreach (var t in mapData_SO_List)
             {
                 GetmapDataToDic(t);
+                if (!FirstLoadSceneDic.ContainsKey(t.SceneName))
+                {
+                    FirstLoadSceneDic.Add(t.SceneName, true);
+                }
             }
+        }
+        private void Start()
+        {
+            
+
+
         }
 
 
@@ -38,6 +51,7 @@ namespace MFarm.Map
             EventHandler.executeActionAfterAnimation += OnExecuteActionAfterAnimation;
             EventHandler.UpdataGameDayEvent += OnUpdataGameDayEvent;
             EventHandler.RefleshMapDateEvent += OnRefleshMapDateEvent;
+
         }
 
         private void OnDisable()
@@ -58,37 +72,43 @@ namespace MFarm.Map
         {
             foreach (TileProperty t in mapData_SO.TilePropertiesList)
             {
-                TileDetail TileDetail = new TileDetail
+                string key = mapData_SO.SceneName + " " + t.gridX + "x" + t.gridY + "y";
+                TileDetail tileDetail = getTileDetailByKey(key);
+
+                if (tileDetail == null)
                 {
-                    gridX = t.gridX,
-                    gridY = t.gridY,
-                };
+                    tileDetail = new TileDetail
+                    {
+                        gridX = t.gridX,
+                        gridY = t.gridY,
+                    };
+                }
+                
 
                 switch (t.gridType)
                 {
                     case E_GridType.CanDig:
-                        TileDetail.CanDig = true;
+                        tileDetail.CanDig = true;
                         break;
                     case E_GridType.CanDrop:
-                        TileDetail.CanDropItem = true;
+                        tileDetail.CanDropItem = true;
                         break;
                     case E_GridType.CanPlaceFurniture:
-                        TileDetail.CanPlaceFurniture = true;
+                        tileDetail.CanPlaceFurniture = true;
                         break;
                     case E_GridType.NPC_Obstacle:
-                        TileDetail.NPC_Obstacle = true;
+                        tileDetail.NPC_Obstacle = true;
                         break;
                 }
 
-                string key = mapData_SO.SceneName + " " + t.gridX + "x" + t.gridY + "y";
-                TileDetail gridDe = getTileDetailByKey(key);
-                if (gridDe != null)
+                
+                if (tileDetail != null)
                 {
-                    TileDetailDic[key] = TileDetail;
+                    TileDetailDic[key] = tileDetail;
                 }
                 else
                 {
-                    TileDetailDic.Add(key, TileDetail);
+                    TileDetailDic.Add(key, tileDetail);
                 }
             }
         }
@@ -192,7 +212,13 @@ namespace MFarm.Map
             waterTileMap = GameObject.FindGameObjectWithTag("Water").GetComponent<Tilemap>();
             digTileMap = GameObject.FindGameObjectWithTag("Dig").GetComponent<Tilemap>();
 
-            DisplayMap(SceneManager.GetActiveScene().name);
+            if (FirstLoadSceneDic[SceneManager.GetActiveScene().name])
+            {
+                EventHandler.CallUpSaveItemPrefabEvent();
+                FirstLoadSceneDic[SceneManager.GetActiveScene().name] = false;
+            }
+
+            RefreshMapDate();
         }
 
         private void OnDigTile(TileDetail tileDetail)
@@ -205,13 +231,17 @@ namespace MFarm.Map
         }
 
 
-        private void UpdataTileDetailToDic(TileDetail tileDetail)
+        public void UpdataTileDetailToDic(TileDetail tileDetail)
         {
             string key = SceneManager.GetActiveScene().name + " " + tileDetail.gridX + "x" + tileDetail.gridY + "y";
 
             if (TileDetailDic.ContainsKey(key))
             {
                 TileDetailDic[key] = tileDetail;
+            }
+            else
+            {
+                TileDetailDic.Add(key, tileDetail);
             }
         }
 
@@ -221,6 +251,10 @@ namespace MFarm.Map
 
         private void OnUpdataGameDayEvent(int gameDay, Season gameSeason)
         {
+
+
+            
+
             foreach (var tile in TileDetailDic)
             {
                 if (tile.Value.digSinceDay > -1)
@@ -243,12 +277,12 @@ namespace MFarm.Map
                     tile.Value.seedSinceDay++;
                 }
             }
-
             RefreshMapDate();
         }
 
         private void RefreshMapDate()
         {
+
             if (digTileMap != null)
             {
                 digTileMap.ClearAllTiles();
