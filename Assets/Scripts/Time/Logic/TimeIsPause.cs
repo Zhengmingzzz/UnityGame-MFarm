@@ -6,15 +6,16 @@ public class TimeIsPause : MonoBehaviour
 {
     private void OnEnable()
     {
-        EventHandler.timeAccelerate += Accelerate;
+        EventHandler.timeControl += timeIsPause;
     }
 
-    public void Accelerate(bool isAccelerate)
+    public void timeIsPause(bool isPause)
     {
-        TimeManager.isAccelerate = !isAccelerate;
+        TimeManager.gameClockPause = !isPause;
     }
+
     public void timeControl()
     {
-        EventHandler.CallUptimeAccelerate(TimeManager.isAccelerate) ;
+        EventHandler.CallUptimeControl(TimeManager.gameClockPause) ;
     }
 }

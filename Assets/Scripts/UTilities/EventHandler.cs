@@ -58,10 +58,10 @@ public static class EventHandler
 
 
 
-    public static event Action<bool> timeAccelerate;
-    public static void CallUptimeAccelerate(bool isAccelerate)
+    public static event Action<bool> timeControl;
+    public static void CallUptimeControl(bool timeIsPause)
     {
-        timeAccelerate?.Invoke(isAccelerate);
+        timeControl?.Invoke(timeIsPause);
     }
 
 
@@ -130,7 +130,6 @@ public static class EventHandler
     }
 
     public static event Action SaveItemPrefabEvent;
-
     public static void CallUpSaveItemPrefabEvent()
     {
         SaveItemPrefabEvent?.Invoke();

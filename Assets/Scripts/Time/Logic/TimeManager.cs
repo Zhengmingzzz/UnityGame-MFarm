@@ -8,9 +8,9 @@ public class TimeManager : MonoBehaviour
     private Season gameSeason = Season.´ºÌì;
     private int seasonInMouth = 3;
 
-    public static bool gameClockPause;
     private float tickTime = 0f;
 
+    public static bool gameClockPause = false;
     public static bool isAccelerate = false;
 
     private void newGameTime()
@@ -35,12 +35,25 @@ public class TimeManager : MonoBehaviour
         EventHandler.CallUpUpdataTimeUI(minute, hour);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            day++;
+            EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
+            EventHandler.CallUpUpdataTimeUI(minute, hour);
+            EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
+
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!gameClockPause)
         {
             float timeThreshold = Settings.secondThreshold;
             tickTime += Time.deltaTime;
+            
             if (tickTime > timeThreshold)
                 UpdataTime();
         }
@@ -48,14 +61,7 @@ public class TimeManager : MonoBehaviour
 
     public void UpdataTime()
     {
-        if (isAccelerate)
-        {
-            second += (int)Settings.timeAccelerate;
-        }
-        else
-        {
-            second++;
-        }
+        second++;
         if (second > Settings.secondHold)
         {
             second = 0;
@@ -63,14 +69,9 @@ public class TimeManager : MonoBehaviour
             
             if (minute > Settings.minuteHold)
             {
-                //TODO:²âÊÔ
                 minute = 0;
                 hour ++;
-                
-                if (isAccelerate)
-                {
-                    hour += 6;
-                }
+
 
                 if (hour > Settings.hourHold)
                 {
