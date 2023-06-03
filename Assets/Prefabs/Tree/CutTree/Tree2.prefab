@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2250694996101699296}
   - component: {fileID: 3009430640612206469}
   - component: {fileID: 1569960813872403479}
+  - component: {fileID: 2477087493466386485}
+  - component: {fileID: 3224488956019863362}
   m_Layer: 0
   m_Name: Tree2
   m_TagString: Untagged
@@ -78,6 +80,19 @@ MonoBehaviour:
     GenarateAtPlayerHead: 0
     haveAnimation: 0
     particalEffect: 0
+    ParticalEffectSystem: 
+  tileDetail:
+    gridX: 0
+    gridY: 0
+    CanDig: 0
+    CanDropItem: 0
+    CanPlaceFurniture: 0
+    NPC_Obstacle: 0
+    digSinceDay: -1
+    wateredSinceDay: -1
+    seedID: -1
+    seedSinceDay: -1
+    harvestTimes: -1
 --- !u!61 &3009430640612206469
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91,7 +106,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08247948, y: 3.5877137}
+  m_Offset: {x: 0.12841511, y: 4.66719}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -102,7 +117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4742851, y: 6.443429}
+  m_Size: {x: 4.8523407, y: 3.7332537}
   m_EdgeRadius: 0
 --- !u!114 &1569960813872403479
 MonoBehaviour:
@@ -116,6 +131,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d297847d143c0c459dee65040b5d621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2477087493466386485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527788175540891006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6852e57c0a4985743b85db26c47cdbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedID: 0
+  glowthDays: 0
+--- !u!61 &3224488956019863362
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527788175540891006}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.08377758, y: 1.2478731}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1675551, y: 3.1963844}
+  m_EdgeRadius: 0
 --- !u!1 &2473108723497368287
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +273,7 @@ BoxCollider2D:
   m_Offset: {x: 0.020616531, y: 0.07876229}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.5, y: 2.4}
     newSize: {x: 3.5, y: 2.4}
     adaptiveTilingThreshold: 0.5
@@ -267,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5006953841423728086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.23, z: 0}
+  m_LocalPosition: {x: -0.04, y: 1.039, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,7 +403,7 @@ Animator:
   m_GameObject: {fileID: 5006953841423728086}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c74e6e14e44e5f04d82b57a12abc8309, type: 2}
+  m_Controller: {fileID: 9100000, guid: 76c50695132077b499e52ad1bc4e41f3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

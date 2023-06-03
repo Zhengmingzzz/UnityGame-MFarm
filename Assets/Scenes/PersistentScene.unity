@@ -1690,7 +1690,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2085050402}
   - component: {fileID: 2085050403}
-  - component: {fileID: 2085050404}
   m_Layer: 0
   m_Name: CursorManager
   m_TagString: Untagged
@@ -1731,24 +1730,3 @@ MonoBehaviour:
   goods: {fileID: 21300000, guid: 000fe795a723f1d40b013e74ec2c231b, type: 3}
   UISprite: {fileID: 21300000, guid: 3afef6bf65ab74846a520a2bbb33ef17, type: 3}
   Furniture: {fileID: 21300000, guid: 6869870039087ea49a98fd5ad66cbccb, type: 3}
---- !u!95 &2085050404
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085050401}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d386c09cd709c724981381d7f02d950e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

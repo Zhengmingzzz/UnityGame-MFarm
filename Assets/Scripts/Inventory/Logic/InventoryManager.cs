@@ -119,7 +119,6 @@ namespace MFarm.Inventory
 
         public void PickedUpItem(RenderItem item , bool toDestroy)
         {
-            
 
             int Exist_Index = isExistItem(item.ItemID);
             int NULL_Index = bagIsFull();

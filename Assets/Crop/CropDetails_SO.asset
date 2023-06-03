@@ -71,7 +71,7 @@ MonoBehaviour:
     ParticalEffectSystem: 
   - seedID: 1011
     season: 000000000100000002000000
-    growthDays: 01000000020000000100000001000000
+    growthDays: 01000000030000000300000001000000
     seedPrefabs:
     - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
     - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
@@ -99,7 +99,7 @@ MonoBehaviour:
     season: 00000000010000000200000003000000
     growthDays: 00000000
     seedPrefabs:
-    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: c5c82dbf1eb56c44dbca5af4763fa2e5, type: 3}
     seedSprite:
     - {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
     harvestToolID: 65000000
@@ -108,6 +108,52 @@ MonoBehaviour:
     productedItemID: d3070000
     MinAmount: 03000000
     MaxAmount: 05000000
+    spawnRadius: 2
+    dayToReglow: -1
+    ReglowTimes: -1
+    GenarateAtPlayerHead: 0
+    haveAnimation: 0
+    particalEffect: 0
+    ParticalEffectSystem: 
+  - seedID: 1012
+    season: 00000000010000000200000003000000
+    growthDays: 01000000040000000300000003000000
+    seedPrefabs:
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 2868875495765651558, guid: 0482b04fc7c8b24498d79e1e908d91de, type: 3}
+    - {fileID: 527788175540891006, guid: d7c7d4ecfafb2364f8eae1dc71ae7b3a, type: 3}
+    seedSprite:
+    - {fileID: 21300000, guid: 309497be57b084f4da5b2c165ddceca7, type: 3}
+    - {fileID: 21300000, guid: 41bef8696d59f440aa1befb8b23dee5e, type: 3}
+    - {fileID: 21300000, guid: 0a4318b810b0f467fab50a11f472c746, type: 3}
+    - {fileID: 21300000, guid: a21492e2d90cf4f038c4b9ae2600c5ff, type: 3}
+    harvestToolID: 65000000
+    harvestActionCount: 04000000
+    TransferNewItemID: 3502
+    productedItemID: d4070000f4030000
+    MinAmount: 0300000001000000
+    MaxAmount: 0500000003000000
+    spawnRadius: 2
+    dayToReglow: -1
+    ReglowTimes: -1
+    GenarateAtPlayerHead: 0
+    haveAnimation: 1
+    particalEffect: 1
+    ParticalEffectSystem: 02000000
+  - seedID: 3502
+    season: 00000000010000000200000003000000
+    growthDays: 00000000
+    seedPrefabs:
+    - {fileID: 2868875495765651558, guid: c5c82dbf1eb56c44dbca5af4763fa2e5, type: 3}
+    seedSprite:
+    - {fileID: 21300000, guid: 774ad8d2636c5457e81a95a3e1f2352d, type: 3}
+    harvestToolID: 65000000
+    harvestActionCount: 03000000
+    TransferNewItemID: -1
+    productedItemID: d4070000
+    MinAmount: 01000000
+    MaxAmount: 03000000
     spawnRadius: 2
     dayToReglow: -1
     ReglowTimes: -1

@@ -170,7 +170,6 @@ public class Crop : MonoBehaviour
                 else if (cropDetails.TransferNewItemID != -1)
                 {
                     tileDetail.seedID = cropDetails.TransferNewItemID;
-                    //tileDetail.harvestTimes
                 }
                 else
                 {

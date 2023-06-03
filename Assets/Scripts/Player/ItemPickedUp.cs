@@ -11,8 +11,10 @@ namespace MFarm.Inventory
         {
             RenderItem item = collision.GetComponent<RenderItem>();
 
+
             if (item != null && item.itemDetails.canPickedUp == true)
             {
+
                 InventoryManager.Instance.PickedUpItem(item, true);
             }
         }
