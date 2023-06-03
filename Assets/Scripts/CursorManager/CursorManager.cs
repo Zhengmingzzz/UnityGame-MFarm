@@ -22,7 +22,16 @@ public class CursorManager : MonoBehaviour
     private bool isTransition;
     private bool mouseValid;
 
+    private Transform playerTransform;
 
+    private bool RadiumValid;
+
+
+    private void Awake()
+    {
+        playerTransform = FindObjectOfType<Player>().transform;
+
+    }
 
     private void Start()
     {
@@ -51,7 +60,9 @@ public class CursorManager : MonoBehaviour
             {
                 SetCursorImage(currentSprite);
                 if (!isTransition)
+                {
                     CheckCursorValid();
+                }
                 else
                 {
                     SetCursorValidColor(true);
@@ -189,10 +200,22 @@ public class CursorManager : MonoBehaviour
             {
                 CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(mouseGridPos);
             }
+
+
             if (selectedItemDetail != null && CheckTileDetailInfo != null)
             {
+                RadiumValid = CheckUseRadiusValid(selectedItemDetail, new Vector3Int(CheckTileDetailInfo.gridX, CheckTileDetailInfo.gridY, 0));
+
                 mouseValid = false;
                 CropDetails cropDetails = CropManager.Instance.GetCropDetailsByID(CheckTileDetailInfo.seedID);
+
+
+                if (!RadiumValid)
+                {
+                    mouseValid = false;
+                    goto PassSwitch;
+
+                }
 
                 //TODO:添加新的工具
                 switch (selectedItemDetail.itemType)
@@ -234,6 +257,7 @@ public class CursorManager : MonoBehaviour
                         }
                         break;
                     case ItemType.ChopTool:
+                    case ItemType.BreakTool:
                         if (crop != null && crop.cropDetails.CheckToolValid(selectedItemDetail.ItemID) && crop.canHarvest)
                         {
                             mouseValid = true;
@@ -250,6 +274,7 @@ public class CursorManager : MonoBehaviour
                         break;
 
                 }
+            PassSwitch:
                 SetCursorValidColor(mouseValid);
 
             }
@@ -297,6 +322,14 @@ public class CursorManager : MonoBehaviour
             
     }
 
+    private bool CheckUseRadiusValid(ItemDetails itemDetail,Vector3Int TargetItemPos)
+    {
+        if (Vector3Int.Distance(new Vector3Int((int)playerTransform.position.x, (int)playerTransform.position.y, 0) ,TargetItemPos) > itemDetail.itemUseRadius) 
+        {
+            return false;
+        }
+        return true;
+    }
 
-    
+
 }

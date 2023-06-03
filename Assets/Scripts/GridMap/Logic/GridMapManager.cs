@@ -169,6 +169,7 @@ namespace MFarm.Map
                     case ItemType.Seed:
                         EventHandler.CallUpPlantEvent(clickedItemDetail.ItemID, currentTileDetail);
                         break;
+                    case ItemType.BreakTool:
                     case ItemType.ChopTool:
                         if (currentCrop != null)
                         {
