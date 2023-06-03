@@ -549,6 +549,12 @@ MonoBehaviour:
   - bodyName: 3
     nowState: 4
     animator: {fileID: 22100000, guid: 476fcc2cae721144386be8edfc8cd289, type: 2}
+  - bodyName: 3
+    nowState: 5
+    animator: {fileID: 22100000, guid: f4d90d82ce4ea97479a99fd3a1c354bc, type: 2}
+  - bodyName: 3
+    nowState: 6
+    animator: {fileID: 22100000, guid: 88edc3d06c0691f4e8af40f01985ff49, type: 2}
   - bodyName: 1
     nowState: 1
     animator: {fileID: 22100000, guid: 3b7809e61ede7e9438d3b383c376e73b, type: 2}
@@ -872,7 +878,7 @@ Animator:
   m_GameObject: {fileID: 802517358}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: cd13381ea5cd0a3499be8b76cdd84085, type: 2}
+  m_Controller: {fileID: 22100000, guid: 88edc3d06c0691f4e8af40f01985ff49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -986,6 +992,8 @@ MonoBehaviour:
     ParticalEffectPrefab: {fileID: 5532975517511957618, guid: 3f49ffc18efd79843beb1a8035b75e8b, type: 3}
   - E_particalSystem: 2
     ParticalEffectPrefab: {fileID: 3291521915728097635, guid: 6b2886057b1440249aa6ef3c5eae0cf0, type: 3}
+  - E_particalSystem: 3
+    ParticalEffectPrefab: {fileID: 9035022725566527227, guid: bc82d4b9a967978428d3fc8fdb517bd1, type: 3}
 --- !u!1 &1013142309
 GameObject:
   m_ObjectHideFlags: 0

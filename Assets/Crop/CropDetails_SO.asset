@@ -179,5 +179,5 @@ MonoBehaviour:
     ReglowTimes: -1
     GenarateAtPlayerHead: 0
     haveAnimation: 0
-    particalEffect: 0
-    ParticalEffectSystem: 
+    particalEffect: 1
+    ParticalEffectSystem: 03000000

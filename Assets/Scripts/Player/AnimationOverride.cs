@@ -67,6 +67,8 @@ public class AnimationOverride : MonoBehaviour
                 ItemType.HoeTool => NowState.Hoe,
                 ItemType.WaterTool=>NowState.Water,
                 ItemType.CollectionTool=>NowState.Harvest,
+                ItemType.BreakTool=>NowState.PickAxe,
+                ItemType.ChopTool=>NowState.Axe,
                 _ => NowState.None
             };
         }

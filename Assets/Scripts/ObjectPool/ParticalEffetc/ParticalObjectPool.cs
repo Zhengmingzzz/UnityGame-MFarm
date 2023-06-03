@@ -25,6 +25,15 @@ public class ParticalObjectPool : MonoBehaviour
 
     private void OnPEInstantiateEvent(E_PESType PESType, Vector3 pos)
     {
+        //TODO:添加新粒子时需在此添加数据
+        int addY =PESType switch
+            {
+                E_PESType.LeaveFalling01=>3,
+                E_PESType.LeaveFalling02 => 3,
+                E_PESType.Rock=>1,
+
+            };
+        pos.y += addY;
         StartCoroutine(PESProgress(PESType, pos));
     }
 

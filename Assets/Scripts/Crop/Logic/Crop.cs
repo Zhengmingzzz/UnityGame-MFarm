@@ -53,7 +53,8 @@ public class Crop : MonoBehaviour
             {
                 for (int i = 0; i < cropDetails.ParticalEffectSystem.Length; i++)
                 {
-                    EventHandler.CallUpPEInstantiateEvent(cropDetails.ParticalEffectSystem[i], new Vector3(tileDetail.gridX, tileDetail.gridY + 3f, 0));
+                    
+                    EventHandler.CallUpPEInstantiateEvent(cropDetails.ParticalEffectSystem[i], new Vector3Int(tileDetail.gridX, tileDetail.gridY, 0));
 
                 }
             }
