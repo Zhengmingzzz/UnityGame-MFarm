@@ -11,6 +11,7 @@ TagManager:
   - Dig
   - Water
   - CropParent
+  - Rock
   layers:
   - Default
   - TransparentFX

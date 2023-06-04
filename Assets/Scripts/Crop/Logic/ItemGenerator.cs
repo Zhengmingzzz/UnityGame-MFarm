@@ -41,6 +41,8 @@ public class ItemGenerator : MonoBehaviour
             tile.seedID = this.seedID;
             tile.digSinceDay = 0;
 
+
+
             GridMapManager.Instance.UpdataTileDetailToDic(tile);
 
         }

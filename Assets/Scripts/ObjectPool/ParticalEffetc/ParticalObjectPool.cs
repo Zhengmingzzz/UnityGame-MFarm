@@ -31,9 +31,13 @@ public class ParticalObjectPool : MonoBehaviour
                 E_PESType.LeaveFalling01=>3,
                 E_PESType.LeaveFalling02 => 3,
                 E_PESType.Rock=>1,
-
+                _=>0,
             };
         pos.y += addY;
+        if (PESType == E_PESType.Rock)
+        {
+            pos.x += 0.5f;
+        }
         StartCoroutine(PESProgress(PESType, pos));
     }
 
