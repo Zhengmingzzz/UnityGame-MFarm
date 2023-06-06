@@ -23,4 +23,6 @@ public class Settings
 
     public const int ReapItemSpawCount = 3;
 
+    public const float ItemShakeTime = 1f;
+
 }
