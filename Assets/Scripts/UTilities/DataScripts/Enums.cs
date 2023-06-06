@@ -46,5 +46,5 @@ public enum E_GridType
 
 public enum E_PESType
 {
-    None,LeaveFalling01,LeaveFalling02,Rock,
+    None,LeaveFalling01,LeaveFalling02,Rock,ReapItem
 }

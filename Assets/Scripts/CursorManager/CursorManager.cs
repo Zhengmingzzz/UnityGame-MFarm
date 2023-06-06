@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using MFarm.CropPlant;
 public class CursorManager : MonoBehaviour
 {
     public Sprite normal, tool, cursorSeed, goods, UISprite, Furniture;
@@ -272,7 +272,12 @@ public class CursorManager : MonoBehaviour
                             }
                         }
                         break;
-
+                    case ItemType.ReapTool:
+                        if (MFarm.Map.GridMapManager.Instance.CheckReapItemValidInRadium(selectedItemDetail, mouseWorldPos))
+                        {
+                            mouseValid = true;
+                        }
+                        break;
                 }
             PassSwitch:
                 SetCursorValidColor(mouseValid);

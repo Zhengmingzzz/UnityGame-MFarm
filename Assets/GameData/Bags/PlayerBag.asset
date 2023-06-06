@@ -27,8 +27,8 @@ MonoBehaviour:
     ItemAmount: 99
   - ItemID: 106
     ItemAmount: 1
-  - ItemID: 1001
-    ItemAmount: 4
+  - ItemID: 104
+    ItemAmount: 12
   - ItemID: 1003
     ItemAmount: 2
   - ItemID: 2002
@@ -39,12 +39,12 @@ MonoBehaviour:
     ItemAmount: 1
   - ItemID: 3001
     ItemAmount: 2
-  - ItemID: 0
-    ItemAmount: 0
-  - ItemID: 0
-    ItemAmount: 0
-  - ItemID: 0
-    ItemAmount: 0
+  - ItemID: 2005
+    ItemAmount: 6
+  - ItemID: 1001
+    ItemAmount: 4
+  - ItemID: 2006
+    ItemAmount: 2
   - ItemID: 0
     ItemAmount: 0
   - ItemID: 0

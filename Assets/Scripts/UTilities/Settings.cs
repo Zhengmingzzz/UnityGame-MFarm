@@ -21,4 +21,6 @@ public class Settings
 
     public const float loadingFadeDuration = 0.8f;
 
+    public const int ReapItemSpawCount = 3;
+
 }

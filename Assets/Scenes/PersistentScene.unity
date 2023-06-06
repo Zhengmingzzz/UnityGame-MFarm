@@ -994,6 +994,8 @@ MonoBehaviour:
     ParticalEffectPrefab: {fileID: 3291521915728097635, guid: 6b2886057b1440249aa6ef3c5eae0cf0, type: 3}
   - E_particalSystem: 3
     ParticalEffectPrefab: {fileID: 9035022725566527227, guid: bc82d4b9a967978428d3fc8fdb517bd1, type: 3}
+  - E_particalSystem: 4
+    ParticalEffectPrefab: {fileID: 1019920555289108754, guid: 032f5c54f984ed14d81f88d38974e7a3, type: 3}
 --- !u!1 &1013142309
 GameObject:
   m_ObjectHideFlags: 0

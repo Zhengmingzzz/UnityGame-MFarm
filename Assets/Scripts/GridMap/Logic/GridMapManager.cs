@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using MFarm.CropPlant;
 
 namespace MFarm.Map
 {
@@ -23,6 +24,8 @@ namespace MFarm.Map
 
 
         private Transform playerTransform => FindObjectOfType<Player>().transform;
+
+        private List<ReapItem> reapItemList;
 
 
         protected override void Awake()
@@ -152,7 +155,7 @@ namespace MFarm.Map
             {
                 switch (clickedItemDetail.itemType)
                 {
-                    //TODO:添加其他类型的实现
+                    //TODO:添加不同物品类型的实现
                     case ItemType.Commodity:
                         EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, playerTransform.position, MousePositionInGrid) ;
                         break;
@@ -168,6 +171,16 @@ namespace MFarm.Map
                         break;
                     case ItemType.Seed:
                         EventHandler.CallUpPlantEvent(clickedItemDetail.ItemID, currentTileDetail);
+                        break;
+                    case ItemType.ReapTool:
+                        for (int i = 0; i < reapItemList.Count; i++)
+                        {
+                            reapItemList[i].SpawnCrop();
+                            if (i >= Settings.ReapItemSpawCount)
+                            {
+                                break;
+                            }
+                        }
                         break;
                     case ItemType.BreakTool:
                     case ItemType.ChopTool:
@@ -329,7 +342,21 @@ namespace MFarm.Map
 
         }
 
+        public bool CheckReapItemValidInRadium(ItemDetails toolDetails,Vector3 mouseWorldPos)
+        {
+            Collider2D[] colliderArray = new Collider2D[20];
+            reapItemList = new List<ReapItem>();
+            int count = Physics2D.OverlapCircleNonAlloc(mouseWorldPos, toolDetails.itemUseRadius,colliderArray);
 
+            foreach (Collider2D c in colliderArray)
+            {
+                if(c!=null && c.GetComponent<ReapItem>())
+                    reapItemList.Add(c.GetComponent<ReapItem>());
+            }
+
+
+            return reapItemList.Count > 0;
+        }
 
 
 
