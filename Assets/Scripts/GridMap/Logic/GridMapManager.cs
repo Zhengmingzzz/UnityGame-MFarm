@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using MFarm.CropPlant;
+    using MFarm.CropPlant;
 
 namespace MFarm.Map
 {
@@ -130,6 +130,7 @@ namespace MFarm.Map
 
         public TileDetail getTileDetailByPos(Vector3Int GridPos)
         {
+
             return getTileDetailByKey(SceneManager.GetActiveScene().name + " " + GridPos.x + "x" + GridPos.y + "y");
         }
 
@@ -359,7 +360,22 @@ namespace MFarm.Map
         }
 
 
+        public bool getGridDimensions(string SceneName, out Vector2Int gridDimension, out Vector2Int gridOrigin)
+        {
+            gridDimension = Vector2Int.zero;
+            gridOrigin = Vector2Int.zero;
 
+            foreach (var m in mapData_SO_List)
+            {
+                if (m.SceneName == SceneName)
+                {
+                    gridDimension = new Vector2Int(m.gridWidth, m.gridHeight);
+                    gridOrigin = new Vector2Int(m.originX, m.originY);
+                    return true;
+                }
+            }
+            return false;
+        }
 
 
 

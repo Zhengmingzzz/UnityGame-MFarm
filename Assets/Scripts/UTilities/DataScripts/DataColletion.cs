@@ -92,3 +92,11 @@ public struct S_ParticalEffect
     public E_PESType E_particalSystem;
     public GameObject ParticalEffectPrefab;
 }
+
+[System.Serializable]
+public class NPC_Position
+{
+    public Transform NPCTransform;
+    public string SceneName;
+    public Vector3Int StartPosition;
+}

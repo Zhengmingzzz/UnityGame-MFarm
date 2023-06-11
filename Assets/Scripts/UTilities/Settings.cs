@@ -25,4 +25,8 @@ public class Settings
 
     public const float ItemShakeTime = 1f;
 
+    public const float baseCellSize = 1f;
+    public const float baseCellDiagonalSize = 1.4f;
+
+
 }
