@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: be06c5b323895524dbc8d5b6df17de16, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -170,10 +170,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1662960811}
   displayPathTile: {fileID: 11400000, guid: dd38c522320f68a42a424b0f2ff4adde, type: 2}
-  startPos: {x: -63, y: -9}
-  targetPos: {x: -49, y: 10}
+  startWorldPos: {x: -63, y: -9}
+  targetWorldPos: {x: -61, y: 0}
   displayStartAndTargetTile: 1
   displayPath: 0
+  schedule:
+    hour: 0
+    minute: 0
+    day: 0
+    season: 0
+    priority: 0
+    targetScene: 01Field
+    targetGridPos: {x: -62, y: 0, z: 0}
+    targetAnimation: {fileID: 7400000, guid: db32c3897ab64466f86a8993b8e48f9e, type: 2}
+    isInteractive: 0
+  isMove: 0
+  NPCMovement: {fileID: 941248158}
 --- !u!114 &13330966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941248153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.8, y: -8.1, z: 0}
+  m_LocalPosition: {x: -63.55, y: -13.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1197,11 +1209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e40acd1eb0b44b459f85958f98594f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 01Home
+  currentScene: 01Field
   speed: 2
   minSpeed: 1
-  maxSpeed: 3
-  isMove: 0
+  maxSpeed: 10
+  blankAnimationClip: {fileID: 7400000, guid: fbed0ab6e76a5244c87536a7831e264d, type: 2}
 --- !u!95 &941248159
 Animator:
   serializedVersion: 5
@@ -2240,7 +2252,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

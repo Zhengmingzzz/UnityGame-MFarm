@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : Singleton<TimeManager>
 {
     private int second, minute, hour,day, mouth, year;
     private Season gameSeason = Season.´ºÌì;
@@ -12,6 +13,8 @@ public class TimeManager : MonoBehaviour
 
     public static bool gameClockPause = false;
     public static bool isAccelerate = false;
+
+    public TimeSpan GameTimeSpan => new TimeSpan(hour, minute, second);
 
     private void newGameTime()
     {
@@ -24,8 +27,9 @@ public class TimeManager : MonoBehaviour
         gameSeason = Season.´ºÌì;
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         newGameTime();
     }
 

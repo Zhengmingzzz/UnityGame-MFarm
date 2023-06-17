@@ -10,7 +10,7 @@ namespace MFarm.N_AStar
         public Vector2Int gridCoordinate;
 
         public int year;
-        public int huor;
+        public int hour;
         public int minute;
         public int seconds;
     }

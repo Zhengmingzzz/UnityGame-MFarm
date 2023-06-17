@@ -12,8 +12,8 @@ namespace MFarm.N_AStar
 
         public TileBase displayPathTile;
 
-        public Vector2Int startPos;
-        public Vector2Int targetPos;
+        public Vector2Int startWorldPos;
+        public Vector2Int targetWorldPos;
 
         private AStar astar;
 
@@ -21,6 +21,12 @@ namespace MFarm.N_AStar
         public bool displayPath;
 
         private Stack<MovementStep> moveStack;
+
+
+        [Header("NPC“∆∂Ø≤‚ ‘")]
+        public ScheduleDetails schedule;
+        public bool isMove;
+        public MFarm.NPC.NPC_Movement NPCMovement;
 
         private void Awake()
         {
@@ -31,6 +37,11 @@ namespace MFarm.N_AStar
         private void Update()
         {
             ShowPathOnGridMap();
+            if (isMove)
+            {
+                isMove = false;
+                NPCMovement.BuildPath(schedule);
+            }
         }
 
         private void ShowPathOnGridMap()
@@ -39,19 +50,19 @@ namespace MFarm.N_AStar
             {
                 if (displayStartAndTargetTile)
                 {
-                    tilemap.SetTile((Vector3Int)startPos, displayPathTile);
-                    tilemap.SetTile((Vector3Int)targetPos, displayPathTile);
+                    tilemap.SetTile((Vector3Int)startWorldPos, displayPathTile);
+                    tilemap.SetTile((Vector3Int)targetWorldPos, displayPathTile);
                 }
                 else
                 {
-                    tilemap.SetTile((Vector3Int)startPos, null);
-                    tilemap.SetTile((Vector3Int)targetPos, null);
+                    tilemap.SetTile((Vector3Int)startWorldPos, null);
+                    tilemap.SetTile((Vector3Int)targetWorldPos, null);
                 }
 
                 if (displayPath)
                 {
                     string sceneName = SceneManager.GetActiveScene().name;
-                    if (astar.BuildPath(sceneName, startPos, targetPos, moveStack))
+                    if (astar.BuildPath(sceneName, startWorldPos, targetWorldPos, moveStack))
                     {
                         foreach (var m in moveStack)
                         {

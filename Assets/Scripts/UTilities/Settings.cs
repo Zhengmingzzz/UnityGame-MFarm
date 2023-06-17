@@ -9,7 +9,7 @@ public class Settings
 
     //时间相关参数阈值
     public const float timeAccelerate = 60f;
-    public const float secondThreshold = 0.1f;
+    public const float secondThreshold = 0.01f;
     public const int secondHold = 59;
     public const int minuteHold = 59;
     public const int hourHold = 23;
@@ -28,5 +28,7 @@ public class Settings
     public const float baseCellSize = 1f;
     public const float baseCellDiagonalSize = 1.4f;
 
+    public const float pixelSize = 0.025f;
 
+    public const float NPCWatiEventTime = 5f;
 }

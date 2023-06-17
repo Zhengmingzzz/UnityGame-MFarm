@@ -16,18 +16,18 @@ public class ScheduleDetails: IComparable<ScheduleDetails>
     public int Time => (hour * 100) + minute;
 
 
-    //public ScheduleDetails(int hour, int minute, int day, Season season, int priority, string targetScene, Vector3Int targetGridPos, AnimationClip targetAnimation, bool isInteractive)
-    //{
-    //    this.hour = hour;
-    //    this.minute = minute;
-    //    this.day = day;
-    //    this.season = season;
-    //    this.priority = priority;
-    //    this.targetScene = targetScene;
-    //    this.targetGridPos = targetGridPos;
-    //    this.targetAnimation = targetAnimation;
-    //    this.isInteractive = isInteractive;
-    //}
+    public ScheduleDetails(int hour, int minute, int day, Season season, int priority, string targetScene, Vector3Int targetGridPos, AnimationClip targetAnimation, bool isInteractive)
+    {
+        this.hour = hour;
+        this.minute = minute;
+        this.day = day;
+        this.season = season;
+        this.priority = priority;
+        this.targetScene = targetScene;
+        this.targetGridPos = targetGridPos;
+        this.targetAnimation = targetAnimation;
+        this.isInteractive = isInteractive;
+    }
 
     public int CompareTo(ScheduleDetails other)
     {

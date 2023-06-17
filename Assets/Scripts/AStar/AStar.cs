@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MFarm.N_AStar
 {
-    class AStar : MonoBehaviour
+    class AStar : Singleton<AStar>
     {
         private GridNodes gridNodes;
 
@@ -29,7 +29,7 @@ namespace MFarm.N_AStar
         /// </summary>
         /// <param name="SceneName"></param>
         /// <returns></returns>
-        private bool generateGridNodes(string SceneName, Vector2Int startPos, Vector2Int targetPos)
+        private bool generateGridNodes(string SceneName, Vector2Int startGridPos, Vector2Int targetGridPos)
         {
             if (GridMapManager.Instance.getGridDimensions(SceneName, out Vector2Int gridDimension, out Vector2Int gridOrigin))
             {
@@ -46,8 +46,8 @@ namespace MFarm.N_AStar
                 return false;
             }
 
-            startNode = gridNodes.getGridNode(startPos.x - originX, startPos.y - originY);
-            targetNode = gridNodes.getGridNode(targetPos.x - originX, targetPos.y - originY);
+            startNode = gridNodes.getGridNode(startGridPos.x - originX, startGridPos.y - originY);
+            targetNode = gridNodes.getGridNode(targetGridPos.x - originX, targetGridPos.y - originY);
 
              for (int x = 0; x < gridWidth; x++)
              {
@@ -60,9 +60,10 @@ namespace MFarm.N_AStar
                         gridNodes.gridNodesArray[x, y].isObstacle = tile.NPC_Obstacle;
 
                     }
+ 
                 }
              }
-            if (!startNode.isObstacle || !targetNode.isObstacle)
+            if (startNode.isObstacle || targetNode.isObstacle)
             {
                 return false;
             }
@@ -70,12 +71,12 @@ namespace MFarm.N_AStar
             return true;
         }
 
-        public bool BuildPath(string SceneName, Vector2Int startPos, Vector2Int targetPos, Stack<MovementStep> movementSteps)
+        public bool BuildPath(string SceneName, Vector2Int startGridPos, Vector2Int targetGridPos, Stack<MovementStep> movementSteps)
         {
             isFindPath = false;
 
 
-            if (generateGridNodes(SceneName, startPos, targetPos))
+            if (generateGridNodes(SceneName, startGridPos, targetGridPos))
             {
                 openList = new List<Node>();
                 closeList = new HashSet<Node>();
@@ -142,6 +143,18 @@ namespace MFarm.N_AStar
 
                             openList.Add(validNeighbourNode);
                         }
+                        //else
+                        //{
+                        //    if (validNeighbourNode.fCost < currentNode.fCost)
+                        //    {
+
+                        //    }
+                        //    else if (validNeighbourNode.fCost == currentNode.fCost)
+                        //    {
+
+                        //    }
+
+                        //}
                     }
                 }
             }
