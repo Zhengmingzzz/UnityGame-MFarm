@@ -66,7 +66,6 @@ namespace MFarm.NPC {
             animator = GetComponent<Animator>();
 
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            animator.runtimeAnimatorController = animatorOverrideController;
         }
         private void OnEnable()
         {
@@ -244,29 +243,14 @@ namespace MFarm.NPC {
         private void MoveToNextStep(TimeSpan nextStepTimeSpan, Vector3Int nextGridPos)
         {
             StartCoroutine(moveCooroutine(nextStepTimeSpan, nextGridPos));
-            //StartCoroutine(moveLogic(nextStepTimeSpan, nextGridPos));
+
+            if (npcMoveStack.Count == 0)
+            {
+                canPlayWaitAnimation = true;
+                watiTimeSpan = GameTimeSpan;
+
+            }
         }
-
-        //private IEnumerator moveLogic(TimeSpan nextStepTimeSpan, Vector3Int nextGridPos)
-        //{
-        //    isMove = true;
-        //    Vector3 nextWorldPos = GridToWorldPosition(nextGridPos);
-
-        //    if (GameTimeSpan < nextStepTimeSpan)
-        //    {
-        //        float duration = (float)(nextStepTimeSpan.TotalSeconds - GameTimeSpan.TotalSeconds);
-
-        //        RB2D.DOMove(nextWorldPos, duration);
-        //        while (Mathf.Abs(Vector3.Distance(transform.localPosition, nextWorldPos)) > Settings.pixelSize)
-        //        {
-        //            yield return new WaitForFixedUpdate();
-        //        }
-        //    }
-        //    RB2D.position = nextWorldPos;
-        //    currentGridPosition = nextGridPos;
-        //    targetGridPosition = nextGridPos;
-        //    isMove = false;
-        //}
 
 
         IEnumerator moveCooroutine(TimeSpan nextStepTimeSpan, Vector3Int nextGridPos)
@@ -287,7 +271,6 @@ namespace MFarm.NPC {
 
                 if (normalSpeed <= maxSpeed)
                 {
-                    //Vector2 movePos = Vector2.Lerp(startWorldPos, targetWorldPos, 1 / totalTime);
 
                     //开始移动
                     while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.localPosition)) > Settings.pixelSize)
@@ -304,12 +287,6 @@ namespace MFarm.NPC {
             currentGridPosition = nextGridPos;
             targetGridPosition = nextGridPos;
 
-            if (npcMoveStack.Count == 0)
-            {
-                canPlayWaitAnimation = true;
-                watiTimeSpan = GameTimeSpan;
-
-            }
 
         }
 
@@ -323,11 +300,12 @@ namespace MFarm.NPC {
 
         private void SetAnimation()
         {
+            animator.SetBool("isMove", isMove);
+
             if (isMove)
             {
                 animator.SetFloat("DirX", dir.x);
                 animator.SetFloat("DirY", dir.y);
-                animator.SetBool("isMove", isMove);
 
                 watiTimeSpan = GameTimeSpan;
             }
@@ -340,6 +318,7 @@ namespace MFarm.NPC {
             }
             
             animator.SetBool("ExitAction", isMove);
+
 
         }
 
