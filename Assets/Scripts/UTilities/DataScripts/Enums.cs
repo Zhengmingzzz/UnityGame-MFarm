@@ -31,7 +31,7 @@ public enum BodyTypeName
 
 public enum NowState
 {
-    Carry,None,Hoe,Water,Harvest,Axe,PickAxe
+    Carry,None,Hoe,Water,Harvest,Axe,PickAxe,ReapTool
 }
 
 public enum Season

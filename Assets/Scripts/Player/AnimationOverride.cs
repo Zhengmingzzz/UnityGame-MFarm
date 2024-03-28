@@ -12,7 +12,6 @@ public class AnimationOverride : MonoBehaviour
     private void Awake()
     {
         animators = GetComponentsInChildren<Animator>();
-
         foreach (Animator a in animators)
         {
             animDic.Add(a.name, a);
@@ -69,6 +68,7 @@ public class AnimationOverride : MonoBehaviour
                 ItemType.CollectionTool=>NowState.Harvest,
                 ItemType.BreakTool=>NowState.PickAxe,
                 ItemType.ChopTool=>NowState.Axe,
+                ItemType.ReapTool=>NowState.ReapTool,
                 _ => NowState.None
             };
         }
