@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 namespace MFarm.Transition
 {
-
-
     public class Transition : MonoBehaviour
     {
         [SceneName]
         public string startSceneName = string.Empty;
 
         private CanvasGroup loadingCanvasGroup;
+        /// <summary>
+        /// 是否正在切换场景
+        /// </summary>
         private bool isFading;
 
         private void Awake()
@@ -53,7 +54,12 @@ namespace MFarm.Transition
             EventHandler.CallUpAfterLoadSceneEvent();
 
         }
-
+        /// <summary>
+        /// 根据要跳转的场景名跳转场景
+        /// </summary>
+        /// <param name="newSceneName">新场景名</param>
+        /// <param name="newScenePos">在新场景的位置</param>
+        /// <returns></returns>
         public IEnumerator TransitionScene(string newSceneName, Vector3 newScenePos)
         {
             EventHandler.CallUpBeforeUnLoadSceneEvent();

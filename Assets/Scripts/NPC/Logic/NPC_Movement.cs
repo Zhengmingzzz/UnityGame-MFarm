@@ -25,8 +25,12 @@ namespace MFarm.NPC {
 
         private Vector3 nextWorldPosition;
 
-        private bool canPlayWaitAnimation;
+        /// <summary>
+        /// 是否可以播放等待动画
+        /// </summary>
+        private bool canPlayWaitAnimation = false;
 
+        // 角色待在原地等待的时间戳
         private TimeSpan watiTimeSpan;
 
 
@@ -42,6 +46,9 @@ namespace MFarm.NPC {
 
         [Header("动画片段")]
         private AnimationClip stopAnimationClip;
+        /// <summary>
+        /// 空的animatorClip
+        /// </summary>
         public AnimationClip blankAnimationClip;
 
 
@@ -65,7 +72,9 @@ namespace MFarm.NPC {
             boxCollider2D = GetComponent<BoxCollider2D>();
             animator = GetComponent<Animator>();
 
+            // 动态创建和原来相同新的animatorcontroller来覆盖原先的controller 从而实现切换animator中clip的效果
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            animator.runtimeAnimatorController = animatorOverrideController;
         }
         private void OnEnable()
         {
@@ -80,7 +89,7 @@ namespace MFarm.NPC {
         }
         private void FixedUpdate()
         {
-            MoveMent();
+            Movement();
         }
         private void Update()
         {
@@ -138,17 +147,18 @@ namespace MFarm.NPC {
             currentGridPosition = currentGrid.WorldToCell(transform.position);
 
             transform.localPosition = new Vector3(currentGridPosition.x + Settings.baseCellSize / 2, currentGridPosition.y + Settings.baseCellSize / 2, 0) ;
-            Debug.Log(transform.position);
-            Debug.Log(transform.localPosition);
 
             targetGridPosition = currentGridPosition;
         }
-
+        /// <summary>
+        /// 根据schedule的当前位置和目标位置建立路径
+        /// </summary>
+        /// <param name="schedule"></param>
         public void BuildPath(ScheduleDetails schedule)
         {
             npcMoveStack.Clear();
             currentSchedule = schedule;
-
+            
             stopAnimationClip = schedule.targetAnimation;
 
             //同场景
@@ -189,7 +199,6 @@ namespace MFarm.NPC {
                     if (IsMoveInDiagonalGrid(priviousStep, currentStep))
                     {
                         moveDistance = Settings.baseCellDiagonalSize;
-                        
                     }
                     else
                     {
@@ -212,16 +221,23 @@ namespace MFarm.NPC {
 
             }
         }
-
+        /// <summary>
+        /// 是否走在对角线上
+        /// </summary>
+        /// <param name="priviousStep"></param>
+        /// <param name="currentStep"></param>
+        /// <returns></returns>
         private bool IsMoveInDiagonalGrid(MovementStep priviousStep,MovementStep currentStep)
         {
             return (priviousStep.gridCoordinate.x != currentStep.gridCoordinate.x) && (priviousStep.gridCoordinate.y != currentStep.gridCoordinate.y);
         }
 
         #region 移动相关代码
-        private void MoveMent()
+        /// <summary>
+        /// fixupdata中会不断调用Movement函数
+        /// </summary>
+        private void Movement()
         {
-
             if (!isSceneLoading && !isMove)
             {
                 if (npcMoveStack.Count > 0)
@@ -313,31 +329,36 @@ namespace MFarm.NPC {
             {
                 if (GameTimeSpan.TotalSeconds > watiTimeSpan.TotalSeconds + Settings.NPCWatiEventTime)
                 {
-                    playWatiAnimationClip();
+                    StartCoroutine(playWatiAnimationClip());
                 }
             }
             
-            animator.SetBool("ExitAction", isMove);
-
-
         }
 
-        private void playWatiAnimationClip()
+        // 就是示例的SetStopAnimation
+        private IEnumerator playWatiAnimationClip()
         {
+            animator.SetFloat("DirX", 0);
+            animator.SetFloat("DirY", -1);
             if (stopAnimationClip != null && canPlayWaitAnimation)
             {
+                // 通过overridecontroller找到空的片段 再去切换动画片段
                 animatorOverrideController[blankAnimationClip] = stopAnimationClip;
-                animator.SetTrigger("ReadinessAction");
-
                 watiTimeSpan = GameTimeSpan;
 
                 canPlayWaitAnimation = false;
+
+                // 若动画片段不为空且当前可以播放动画，则播放动画
+                animator.SetBool("EventAnimation", true);
+                yield return new WaitForSeconds(1);
+                animator.SetBool("EventAnimation", false);
             }
             else
             {
                 animatorOverrideController[stopAnimationClip] = blankAnimationClip;
-
+                animator.SetBool("EventAnimation", false);
             }
+            yield break;
         }
     }
 }

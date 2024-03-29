@@ -171,8 +171,8 @@ MonoBehaviour:
   tilemap: {fileID: 1662960811}
   displayPathTile: {fileID: 11400000, guid: dd38c522320f68a42a424b0f2ff4adde, type: 2}
   startWorldPos: {x: -63, y: -9}
-  targetWorldPos: {x: -61, y: 0}
-  displayStartAndTargetTile: 1
+  targetWorldPos: {x: -60, y: -9}
+  displayStartAndTargetTile: 0
   displayPath: 0
   schedule:
     hour: 0
@@ -181,8 +181,8 @@ MonoBehaviour:
     season: 0
     priority: 0
     targetScene: 01Field
-    targetGridPos: {x: -62, y: 0, z: 0}
-    targetAnimation: {fileID: 7400000, guid: db32c3897ab64466f86a8993b8e48f9e, type: 2}
+    targetGridPos: {x: -63, y: -7, z: 0}
+    targetAnimation: {fileID: 7400000, guid: 33ce18e0dfb67d6428509ec7c99c46d2, type: 2}
     isInteractive: 0
   isMove: 0
   NPCMovement: {fileID: 941248158}
@@ -1039,7 +1039,7 @@ Animator:
   m_GameObject: {fileID: 802517358}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 36997e9c1b01fc544a55a45302110354, type: 2}
+  m_Controller: {fileID: 22100000, guid: f4d90d82ce4ea97479a99fd3a1c354bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   speed: 2
   minSpeed: 1
   maxSpeed: 10
-  blankAnimationClip: {fileID: 7400000, guid: fbed0ab6e76a5244c87536a7831e264d, type: 2}
+  blankAnimationClip: {fileID: 7400000, guid: 500fefed8113b4f7e8f2dc728631a63d, type: 2}
 --- !u!95 &941248159
 Animator:
   serializedVersion: 5
@@ -1800,7 +1800,7 @@ Animator:
   m_GameObject: {fileID: 1635024409}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: f425b154339bb8e4db5a50f3ae547332, type: 2}
+  m_Controller: {fileID: 22100000, guid: a146326c96a319c4194dfcdceffe2da0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

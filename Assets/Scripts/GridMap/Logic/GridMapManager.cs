@@ -367,6 +367,7 @@ namespace MFarm.Map
 
             foreach (var m in mapData_SO_List)
             {
+                
                 if (m.SceneName == SceneName)
                 {
                     gridDimension = new Vector2Int(m.gridWidth, m.gridHeight);

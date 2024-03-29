@@ -20,5 +20,5 @@ MonoBehaviour:
     priority: 0
     targetScene: 
     targetGridPos: {x: 0, y: 0, z: 0}
-    targetAnimation: {fileID: 0}
+    targetAnimation: {fileID: 7400000, guid: 5862232713ceb47de9810fd757392781, type: 2}
     isInteractive: 0

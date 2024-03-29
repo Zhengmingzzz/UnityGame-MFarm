@@ -86,10 +86,6 @@ namespace MFarm.N_AStar
                             moveStack.Clear();
                     }
                 }
-
-
-
-
             }
         }
 

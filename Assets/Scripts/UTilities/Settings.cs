@@ -19,6 +19,9 @@ public class Settings
 
     public const float RotateDuration = 0.35f;
 
+    /// <summary>
+    /// 限制切换场景时加载的时间
+    /// </summary>
     public const float loadingFadeDuration = 0.8f;
 
     public const int ReapItemSpawCount = 3;
@@ -30,5 +33,5 @@ public class Settings
 
     public const float pixelSize = 0.025f;
 
-    public const float NPCWatiEventTime = 5f;
+    public const float NPCWatiEventTime = 10f;
 }
