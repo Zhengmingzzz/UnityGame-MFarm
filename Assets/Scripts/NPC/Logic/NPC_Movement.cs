@@ -308,7 +308,7 @@ namespace MFarm.NPC
             {
                 if (npcMoveStack.Count > 0)
                 {
-                    canPlayWaitAnimation = false;
+                    resetWaitTime();
 
                     MovementStep nextStep = npcMoveStack.Pop();
 
@@ -404,7 +404,7 @@ namespace MFarm.NPC
         private IEnumerator playWatiAnimationClip()
         {
             // 重置等待时间
-            waitTime = Settings.NPCWatiEventTime;
+            resetWaitTime();
 
             if (stopAnimationClip != null)
             {
@@ -423,5 +423,10 @@ namespace MFarm.NPC
             }
             yield break;
         }
+        void resetWaitTime()
+        {
+            waitTime = Settings.NPCWatiEventTime;
+        }
     }
 }
+
