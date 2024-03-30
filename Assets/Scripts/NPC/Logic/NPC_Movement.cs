@@ -8,7 +8,8 @@ using System;
 using UnityEditor;
 using DG.Tweening;
 
-namespace MFarm.NPC {
+namespace MFarm.NPC
+{
     public class NPC_Movement : MonoBehaviour
     {
         [Header("临时变量")]
@@ -17,7 +18,7 @@ namespace MFarm.NPC {
         public string StartScene { set => currentScene = value; }
 
         private Vector3Int currentGridPosition;
-        private Vector3Int targetGridPosition;
+        // private Vector3Int targetGridPosition;
 
         private ScheduleDetails currentSchedule;
 
@@ -33,11 +34,13 @@ namespace MFarm.NPC {
         #endregion
         /// <summary>
         /// 是否可以播放等待动画
+        /// 由Updata中的等待时间和Movement函数来控制
         /// </summary>
         private bool canPlayWaitAnimation = false;
 
         // 角色待在原地等待的时间戳
-        private TimeSpan watiTimeSpan;
+        // 只有在播放等待动画时才会对它进行重置
+        private float waitTime;
 
 
         [Header("角色移动基本参数")]
@@ -85,7 +88,7 @@ namespace MFarm.NPC {
             // 初始化ScheduleSet
             scheduleSet = new SortedSet<ScheduleDetails>();
             // 将Schedule_SO的数据传入Set中
-            foreach (ScheduleDetails schedule in schedulesData.ScheduleList) 
+            foreach (ScheduleDetails schedule in schedulesData.ScheduleList)
             {
                 scheduleSet.Add(schedule);
             }
@@ -113,8 +116,12 @@ namespace MFarm.NPC {
         }
         private void Update()
         {
-            if(!isSceneLoading)
+            if (!isSceneLoading)
                 SetAnimation();
+
+            // 此处用于控制等待时间
+            waitTime -= Time.deltaTime;
+            canPlayWaitAnimation = waitTime <= 0;
         }
 
         private void OnAftarSceneLoadEvent()
@@ -138,12 +145,12 @@ namespace MFarm.NPC {
         /// <param name="hour"></param>
         /// <param name="day"></param>
         /// <param name="season"></param>
-        private void OnGameMinuteEvent(int minute, int hour,int day, Season season)
+        private void OnGameMinuteEvent(int minute, int hour, int day, Season season)
         {
             // 用于遍历日程表判断时间是否匹配
             int time = (hour * 100) + minute;
             ScheduleDetails matchedSchedule = null;
-            foreach(var schedule in scheduleSet)
+            foreach (var schedule in scheduleSet)
             {
                 if (schedule.Time == time)
                 {
@@ -161,7 +168,7 @@ namespace MFarm.NPC {
                 }
             }
 
-            if(matchedSchedule != null)
+            if (matchedSchedule != null)
             {
                 BuildPath(matchedSchedule);
             }
@@ -202,9 +209,9 @@ namespace MFarm.NPC {
             targetScene = currentScene;
             currentGridPosition = currentGrid.WorldToCell(transform.position);
 
-            transform.localPosition = new Vector3(currentGridPosition.x + Settings.baseCellSize / 2, currentGridPosition.y + Settings.baseCellSize / 2, 0) ;
+            transform.localPosition = new Vector3(currentGridPosition.x + Settings.baseCellSize / 2, currentGridPosition.y + Settings.baseCellSize / 2, 0);
 
-            targetGridPosition = currentGridPosition;
+            //targetGridPosition = currentGridPosition;
         }
         /// <summary>
         /// 根据schedule的当前位置和目标位置建立路径
@@ -214,7 +221,8 @@ namespace MFarm.NPC {
         {
             npcMoveStack.Clear();
             currentSchedule = schedule;
-            
+            //targetGridPosition = schedule.targetGridPos;
+
             stopAnimationClip = schedule.targetAnimation;
 
             //同场景
@@ -268,9 +276,9 @@ namespace MFarm.NPC {
                     }
 
 
-                    TimeSpan moveToNextGridTime = new TimeSpan(0, 0, (int)moveTime) ;
+                    TimeSpan moveToNextGridTime = new TimeSpan(0, 0, (int)moveTime);
 
-                    currentTime+= moveToNextGridTime;
+                    currentTime += moveToNextGridTime;
 
                     priviousStep = currentStep;
                 }
@@ -283,7 +291,7 @@ namespace MFarm.NPC {
         /// <param name="priviousStep"></param>
         /// <param name="currentStep"></param>
         /// <returns></returns>
-        private bool IsMoveInDiagonalGrid(MovementStep priviousStep,MovementStep currentStep)
+        private bool IsMoveInDiagonalGrid(MovementStep priviousStep, MovementStep currentStep)
         {
             return (priviousStep.gridCoordinate.x != currentStep.gridCoordinate.x) && (priviousStep.gridCoordinate.y != currentStep.gridCoordinate.y);
         }
@@ -291,6 +299,8 @@ namespace MFarm.NPC {
         #region 移动相关代码
         /// <summary>
         /// fixupdata中会不断调用Movement函数
+        /// 行走时会将isMove变量设置为ture防止行走时播放其他动画
+        /// 同时将canPlayWaitAnimation设置为false
         /// </summary>
         private void Movement()
         {
@@ -298,6 +308,8 @@ namespace MFarm.NPC {
             {
                 if (npcMoveStack.Count > 0)
                 {
+                    canPlayWaitAnimation = false;
+
                     MovementStep nextStep = npcMoveStack.Pop();
 
                     currentScene = nextStep.SceneName;
@@ -308,23 +320,20 @@ namespace MFarm.NPC {
 
                     MoveToNextStep(nextStepTimeSpan, nextGridPos);
                 }
-
+                else
+                {
+                    // 使角色面朝下
+                    animator.SetFloat("DirX", 0);
+                    animator.SetFloat("DirY", -1);
+                    animator.SetBool("Exit", false);
+                }
             }
         }
 
         private void MoveToNextStep(TimeSpan nextStepTimeSpan, Vector3Int nextGridPos)
         {
             StartCoroutine(moveCooroutine(nextStepTimeSpan, nextGridPos));
-
-            if (npcMoveStack.Count == 0)
-            {
-                canPlayWaitAnimation = true;
-                watiTimeSpan = GameTimeSpan;
-
-            }
         }
-
-
         IEnumerator moveCooroutine(TimeSpan nextStepTimeSpan, Vector3Int nextGridPos)
         {
             isMove = true;
@@ -357,7 +366,7 @@ namespace MFarm.NPC {
             RB2D.transform.position = nextWorldPosition;
             isMove = false;
             currentGridPosition = nextGridPos;
-            targetGridPosition = nextGridPos;
+            // targetGridPosition = nextGridPos;
 
 
         }
@@ -378,35 +387,33 @@ namespace MFarm.NPC {
             {
                 animator.SetFloat("DirX", dir.x);
                 animator.SetFloat("DirY", dir.y);
-
-                watiTimeSpan = GameTimeSpan;
+                animator.SetBool("Exit", true);
             }
             else
             {
-                if (GameTimeSpan.TotalSeconds > watiTimeSpan.TotalSeconds + Settings.NPCWatiEventTime)
+                if (canPlayWaitAnimation)
                 {
+                    // 播放开始等待动画
                     StartCoroutine(playWatiAnimationClip());
                 }
             }
-            
+
         }
 
         // 就是示例的SetStopAnimation
         private IEnumerator playWatiAnimationClip()
         {
-            animator.SetFloat("DirX", 0);
-            animator.SetFloat("DirY", -1);
-            if (stopAnimationClip != null && canPlayWaitAnimation)
+            // 重置等待时间
+            waitTime = Settings.NPCWatiEventTime;
+
+            if (stopAnimationClip != null)
             {
                 // 通过overridecontroller找到空的片段 再去切换动画片段
                 animatorOverrideController[blankAnimationClip] = stopAnimationClip;
-                watiTimeSpan = GameTimeSpan;
-
-                canPlayWaitAnimation = false;
 
                 // 若动画片段不为空且当前可以播放动画，则播放动画
                 animator.SetBool("EventAnimation", true);
-                yield return new WaitForSeconds(1);
+                yield return null;
                 animator.SetBool("EventAnimation", false);
             }
             else
