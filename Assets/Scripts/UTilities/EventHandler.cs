@@ -52,18 +52,18 @@ public static class EventHandler
     }
 
 
-    public static event Action<int, int, int, Season> UpdataDate;
+    public static event Action<int, int, int, Season> UpdataDateEvent;
     public static void CallUpUpdataDate(int year, int mouth, int day, Season season)
     {
-        EventHandler.UpdataDate(year, mouth, day, season);
+        EventHandler.UpdataDateEvent(year, mouth, day, season);
     }
 
 
 
-    public static event Action<bool> timeControl;
-    public static void CallUptimeControl(bool timeIsPause)
+    public static event Action<bool> timeControlEvent;
+    public static void CallUpTimeControlEvent(bool timeIsPause)
     {
-        timeControl?.Invoke(timeIsPause);
+        timeControlEvent?.Invoke(timeIsPause);
     }
 
 

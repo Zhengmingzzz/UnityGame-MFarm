@@ -29,12 +29,12 @@ public class TimeUI : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.UpdataTime += OnMinuteChange;
-        EventHandler.UpdataDate += OnDateChange;
+        EventHandler.UpdataDateEvent += OnDateChange;
     }
     private void OnDisable()
     {
         EventHandler.UpdataTime -= OnMinuteChange;
-        EventHandler.UpdataDate -= OnDateChange;
+        EventHandler.UpdataDateEvent -= OnDateChange;
     }
 
 

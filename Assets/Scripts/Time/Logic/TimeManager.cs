@@ -11,6 +11,7 @@ public class TimeManager : Singleton<TimeManager>
 
     private float tickTime = 0f;
 
+    // 根据这个变量控制游戏时间的运行
     public static bool gameClockPause = false;
     public static bool isAccelerate = false;
 
@@ -44,18 +45,12 @@ public class TimeManager : Singleton<TimeManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            day++;
-            EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
-            EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
-            EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
-
-        }
+        timeControl();
     }
 
     private void FixedUpdate()
     {
+
         if (!gameClockPause)
         {
             float timeThreshold = Settings.secondThreshold;
@@ -66,9 +61,49 @@ public class TimeManager : Singleton<TimeManager>
         }
     }
 
+    /// <summary>
+    /// 时间控制函数
+    /// G--增加天数
+    /// P--暂停时间
+    /// H--时间加速
+    /// </summary>
+    private void timeControl()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            day++;
+            EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
+            EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
+            EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            EventHandler.CallUpTimeControlEvent(gameClockPause);
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            isAccelerate = !isAccelerate;
+        }
+    }
+
+    //private void AccelerateTime()
+    //{
+    //    isAccelerate = !isAccelerate;
+    //    if (isAccelerate == true)
+    //    {
+    //        minute++;
+    //        EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
+    //        EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
+    //        EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
+    //    }
+    //}
+
     public void UpdataTime()
     {
-        second++;
+        if (isAccelerate)
+            second += 10;
+        else
+            second++;
         if (second > Settings.secondHold)
         {
             second = 0;
@@ -106,6 +141,7 @@ public class TimeManager : Singleton<TimeManager>
                             }
                         }
                     }
+                    // 天数/季节更新
                     EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
                 }
                 //小时更新
@@ -115,6 +151,6 @@ public class TimeManager : Singleton<TimeManager>
 
         }
         //分钟更新
-        EventHandler.CallUpUpdataTime(minute, hour,day, gameSeason);
+        EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
     }
 }
