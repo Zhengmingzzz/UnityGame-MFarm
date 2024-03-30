@@ -1256,7 +1256,7 @@ Transform:
   m_GameObject: {fileID: 941248153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.55, y: -13.4, z: 0}
+  m_LocalPosition: {x: -63.55, y: -12.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1276,6 +1276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 01Field
+  schedulesData: {fileID: 11400000, guid: fd950432701d3c049b69b2fa06fc6809, type: 2}
   speed: 2
   minSpeed: 1
   maxSpeed: 10

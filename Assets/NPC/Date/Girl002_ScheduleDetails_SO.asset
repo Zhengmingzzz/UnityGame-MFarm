@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Girl002_ScheduleDetails_SO
   m_EditorClassIdentifier: 
   ScheduleList:
-  - hour: 0
-    minute: 0
-    day: 0
+  - hour: 8
+    minute: 30
+    day: 1
     season: 0
     priority: 0
-    targetScene: 
-    targetGridPos: {x: 0, y: 0, z: 0}
+    targetScene: 01Field
+    targetGridPos: {x: -62, y: -7, z: 0}
     targetAnimation: {fileID: 7400000, guid: 5862232713ceb47de9810fd757392781, type: 2}
     isInteractive: 0
