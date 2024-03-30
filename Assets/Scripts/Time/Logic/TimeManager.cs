@@ -5,7 +5,7 @@ using System;
 
 public class TimeManager : Singleton<TimeManager>
 {
-    private int second, minute, hour,day, mouth, year;
+    private int second, minute, hour, day, mouth, year;
     private Season gameSeason = Season.春天;
     private int seasonInMouth = 3;
 
@@ -16,11 +16,14 @@ public class TimeManager : Singleton<TimeManager>
 
     public TimeSpan GameTimeSpan => new TimeSpan(hour, minute, second);
 
+    /// <summary>
+    /// 游戏中一开始的时间
+    /// </summary>
     private void newGameTime()
     {
         second = 0;
         minute = 0;
-        hour = 20;
+        hour = 8;
         day = 1;
         mouth = 1;
         year = 2022;
@@ -36,7 +39,7 @@ public class TimeManager : Singleton<TimeManager>
     private void Start()
     {
         EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
-        EventHandler.CallUpUpdataTimeUI(minute, hour);
+        EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
     }
 
     private void Update()
@@ -45,7 +48,7 @@ public class TimeManager : Singleton<TimeManager>
         {
             day++;
             EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
-            EventHandler.CallUpUpdataTimeUI(minute, hour);
+            EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
             EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
 
         }
@@ -57,7 +60,7 @@ public class TimeManager : Singleton<TimeManager>
         {
             float timeThreshold = Settings.secondThreshold;
             tickTime += Time.deltaTime;
-            
+
             if (tickTime > timeThreshold)
                 UpdataTime();
         }
@@ -70,11 +73,11 @@ public class TimeManager : Singleton<TimeManager>
         {
             second = 0;
             minute++;
-            
+
             if (minute > Settings.minuteHold)
             {
                 minute = 0;
-                hour ++;
+                hour++;
 
 
                 if (hour > Settings.hourHold)
@@ -111,7 +114,7 @@ public class TimeManager : Singleton<TimeManager>
             }
 
         }
-                //分钟更新
-                EventHandler.CallUpUpdataTimeUI(minute, hour);
+        //分钟更新
+        EventHandler.CallUpUpdataTime(minute, hour,day, gameSeason);
     }
 }

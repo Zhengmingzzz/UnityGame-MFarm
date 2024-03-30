@@ -23,8 +23,14 @@ namespace MFarm.NPC {
 
         private TimeSpan GameTimeSpan => TimeManager.Instance.GameTimeSpan;
 
+
         private Vector3 nextWorldPosition;
 
+        #region 时间匹配所需的参数
+        // 为时间表排序用于在OnGameMinute中对比是否到当前时间了
+        public ScheduleDetails_SO schedulesData;
+        private SortedSet<ScheduleDetails> scheduleSet;
+        #endregion
         /// <summary>
         /// 是否可以播放等待动画
         /// </summary>
@@ -75,16 +81,30 @@ namespace MFarm.NPC {
             // 动态创建和原来相同新的animatorcontroller来覆盖原先的controller 从而实现切换animator中clip的效果
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             animator.runtimeAnimatorController = animatorOverrideController;
+
+            // 初始化ScheduleSet
+            scheduleSet = new SortedSet<ScheduleDetails>();
+            // 将Schedule_SO的数据传入Set中
+            foreach (ScheduleDetails schedule in schedulesData.ScheduleList) 
+            {
+                scheduleSet.Add(schedule);
+            }
         }
+
         private void OnEnable()
         {
             EventHandler.AfterLoadSceneEvent += OnAftarSceneLoadEvent;
             EventHandler.BeforeUnLoadSceneEvent += OnBeforeUnLoadSceneEvent;
+            EventHandler.UpdataTime += OnGameMinuteEvent;
         }
+
+
+
         private void OnDisable()
         {
             EventHandler.AfterLoadSceneEvent -= OnAftarSceneLoadEvent;
             EventHandler.BeforeUnLoadSceneEvent -= OnBeforeUnLoadSceneEvent;
+            EventHandler.UpdataTime -= OnGameMinuteEvent;
 
         }
         private void FixedUpdate()
@@ -109,6 +129,42 @@ namespace MFarm.NPC {
         private void OnBeforeUnLoadSceneEvent()
         {
             isSceneLoading = true;
+        }
+
+        /// <summary>
+        /// 传入当前时间来匹配日程表的时间
+        /// </summary>
+        /// <param name="minute"></param>
+        /// <param name="hour"></param>
+        /// <param name="day"></param>
+        /// <param name="season"></param>
+        private void OnGameMinuteEvent(int minute, int hour,int day, Season season)
+        {
+            // 用于遍历日程表判断时间是否匹配
+            int time = (hour * 100) + minute;
+            ScheduleDetails matchedSchedule = null;
+            foreach(var schedule in scheduleSet)
+            {
+                if (schedule.Time == time)
+                {
+                    if (schedule.season != season)
+                        continue;
+                    if (schedule.day != day)
+                        continue;
+
+                    // 按时间找到了Schedule
+                    matchedSchedule = schedule;
+                }
+                else if (schedule.Time > time || schedule.day > day)
+                {
+                    break;
+                }
+            }
+
+            if(matchedSchedule != null)
+            {
+                BuildPath(matchedSchedule);
+            }
         }
 
         #region 设置NPC显示情况

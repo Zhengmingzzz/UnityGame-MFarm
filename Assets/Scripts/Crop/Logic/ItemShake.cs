@@ -20,12 +20,10 @@ public class ItemShake : MonoBehaviour
     {
         if (playerTransform.position.x > this.transform.position.x)
         {
-            Debug.Log(1);
             this.transform.DORotate(new Vector3(0, -7, 1), Settings.ItemShakeTime);
         }
         else
         {
-            Debug.Log(2);
             this.transform.DORotate(new Vector3(0, 7, -1), Settings.ItemShakeTime);
 
         }

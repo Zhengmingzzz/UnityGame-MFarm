@@ -28,17 +28,17 @@ public class TimeUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHandler.UpdataTimeUI += OnMinuteChange;
+        EventHandler.UpdataTime += OnMinuteChange;
         EventHandler.UpdataDate += OnDateChange;
     }
     private void OnDisable()
     {
-        EventHandler.UpdataTimeUI -= OnMinuteChange;
+        EventHandler.UpdataTime -= OnMinuteChange;
         EventHandler.UpdataDate -= OnDateChange;
     }
 
 
-    public void OnMinuteChange(int minute, int hour)
+    public void OnMinuteChange(int minute, int hour,int day,Season season)
     {
         RotateTimeImage(hour);
         SwitchClockBlockes(hour);

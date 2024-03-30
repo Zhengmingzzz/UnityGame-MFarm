@@ -36,11 +36,13 @@ public static class EventHandler
 
 
 
-
-    public static event Action<int, int> UpdataTimeUI;
-    public static void CallUpUpdataTimeUI(int minute, int hour)
+    /// <summary>
+    /// 教程中的GameMinuteEvent
+    /// </summary>
+    public static event Action<int, int,int, Season> UpdataTime;
+    public static void CallUpUpdataTime(int minute, int hour, int day, Season season)
     {
-        UpdataTimeUI?.Invoke(minute, hour);
+        UpdataTime?.Invoke(minute, hour, day, season);
     }
 
     public static Action<int, Season> UpdataGameDayEvent;
