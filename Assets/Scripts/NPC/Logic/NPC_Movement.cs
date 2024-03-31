@@ -10,9 +10,11 @@ using DG.Tweening;
 
 namespace MFarm.NPC
 {
+    /// <summary>
+    /// 每个NPC身上都会挂在这个脚本 它会根据其中的schedules_so文件执行对应的行为
+    /// </summary>
     public class NPC_Movement : MonoBehaviour
     {
-        [Header("临时变量")]
         public string currentScene;
         private string targetScene;
         public string StartScene { set => currentScene = value; }

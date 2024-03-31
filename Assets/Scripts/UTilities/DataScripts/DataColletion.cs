@@ -72,6 +72,9 @@ public class TileProperty
     public bool gridTypeBoolValue;
 }
 
+/// <summary>
+/// 记录了每个网格的信息，包括xy坐标，是否可以挖掘 丢物品... 种子的ID 种植了的时间以及农作物成长的时间
+/// </summary>
 [System.Serializable]
 public class TileDetail
 {
@@ -83,9 +86,11 @@ public class TileDetail
     public int seedID = -1;
     public int seedSinceDay = -1;
     public int harvestTimes = -1;
-
 }
 
+/// <summary>
+/// 预制体信息，用于填充对象池
+/// </summary>
 [System.Serializable]
 public struct S_ParticalEffect
 {

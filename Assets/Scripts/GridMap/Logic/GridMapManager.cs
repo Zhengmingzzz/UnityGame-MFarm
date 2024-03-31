@@ -130,12 +130,11 @@ namespace MFarm.Map
 
         public TileDetail getTileDetailByPos(Vector3Int GridPos)
         {
-
             return getTileDetailByKey(SceneManager.GetActiveScene().name + " " + GridPos.x + "x" + GridPos.y + "y");
         }
 
         /// <summary>
-        /// 执行实际功能
+        /// 执行动画播放后实现的功能
         /// </summary>
         /// <param name="clickedWorldPos">鼠标世界坐标信息</param>
         /// <param name="clickedItemDetail">选择物品信息</param>
@@ -203,8 +202,14 @@ namespace MFarm.Map
             
         }
 
+        /// <summary>
+        /// 根据鼠标点击后的世界坐标并返回当前坐标下的种子(Crop)类型数据
+        /// </summary>
+        /// <param name="mouseClickedWorldPos"></param>
+        /// <returns></returns>
         public Crop FindCropByMouseWorldPos(Vector3 mouseClickedWorldPos)
         {
+            // 鼠标点击将所有的碰撞体添加到colliders中
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseClickedWorldPos);
             Crop currentCrop = null;
 

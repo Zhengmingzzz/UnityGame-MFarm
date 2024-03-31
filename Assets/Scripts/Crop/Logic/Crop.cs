@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace MFarm.CropPlant
 {
-
-
     public class Crop : MonoBehaviour
     {
         public CropDetails cropDetails;
