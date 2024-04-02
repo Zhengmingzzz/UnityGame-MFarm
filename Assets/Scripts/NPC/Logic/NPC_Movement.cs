@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 using System;
 using UnityEditor;
 using DG.Tweening;
+using MFarm.Transition;
 
 namespace MFarm.NPC
 {
@@ -26,12 +27,16 @@ namespace MFarm.NPC
 
         private TimeSpan GameTimeSpan => TimeManager.Instance.GameTimeSpan;
 
-
         private Vector3 nextWorldPosition;
+
+        private bool isEnforceSchedule = false;
 
         #region 时间匹配所需的参数
         // 为时间表排序用于在OnGameMinute中对比是否到当前时间了
+        // OnGameMinute函数在更新时间后会进行调用
+        // 若时间匹配，会调用BuildPath函数
         public ScheduleDetails_SO schedulesData;
+        // 用于schedule的排序，便于寻找
         private SortedSet<ScheduleDetails> scheduleSet;
         #endregion
         /// <summary>
@@ -124,6 +129,8 @@ namespace MFarm.NPC
             // 此处用于控制等待时间
             waitTime -= Time.deltaTime;
             canPlayWaitAnimation = waitTime <= 0;
+
+            isEnforceSchedule = npcMoveStack.Count > 0;
         }
 
         private void OnAftarSceneLoadEvent()
@@ -170,7 +177,7 @@ namespace MFarm.NPC
                 }
             }
 
-            if (matchedSchedule != null)
+            if (matchedSchedule != null && isEnforceSchedule == false)
             {
                 BuildPath(matchedSchedule);
             }
@@ -211,7 +218,8 @@ namespace MFarm.NPC
             targetScene = currentScene;
             currentGridPosition = currentGrid.WorldToCell(transform.position);
 
-            transform.localPosition = new Vector3(currentGridPosition.x + Settings.baseCellSize / 2, currentGridPosition.y + Settings.baseCellSize / 2, 0);
+            // HACK:1
+            transform.position = new Vector3(currentGridPosition.x + Settings.baseCellSize / 2, currentGridPosition.y + Settings.baseCellSize / 2, 0);
 
             //targetGridPosition = currentGridPosition;
         }
@@ -232,11 +240,33 @@ namespace MFarm.NPC
             {
                 AStar.Instance.BuildPath(currentScene, (Vector2Int)currentGridPosition, (Vector2Int)schedule.targetGridPos, npcMoveStack);
             }
+            //异场景路径创建代码
             else
             {
-                //TODO:创建异场景路径创建代码
+                SceneRoute sceneRoute = NPC_Manager.Instance.GetSceneRoute(currentScene, schedule.targetScene);
+                if (sceneRoute != null)
+                {
+                    foreach (var r in sceneRoute.SecneRouteList)
+                    {
+                        Vector2Int fromPos, gotoPos;
+                        fromPos = r.fromGridCell;
+                        gotoPos = r.gotoGridCell;
+
+                        // 如果pos为9999代表from为当前位置goto要去schedule中的目标位置
+                        if (fromPos.x >= Settings.maxGridSize || fromPos.y >= Settings.maxGridSize)
+                        {
+                            fromPos = (Vector2Int)currentGridPosition;
+                        }
+                        if (gotoPos.x >= Settings.maxGridSize || gotoPos.y >= Settings.maxGridSize)
+                        {
+                            gotoPos = (Vector2Int)schedule.targetGridPos;
+                        }
+                        AStar.Instance.BuildPath(r.sceneName, fromPos, gotoPos, npcMoveStack);
+                    }
+                }
             }
 
+            // 路径计算完后开始走
             if (npcMoveStack.Count > 0)
             {
                 UpdateStepsTimeSpan();
@@ -269,14 +299,12 @@ namespace MFarm.NPC
                     else
                     {
                         moveDistance = Settings.baseCellSize;
-
                     }
                     float moveTime = (moveDistance / speed / Settings.secondThreshold);
                     if (moveTime % 1 > 0.5f)
                     {
                         moveTime++;
                     }
-
 
                     TimeSpan moveToNextGridTime = new TimeSpan(0, 0, (int)moveTime);
 
@@ -314,12 +342,12 @@ namespace MFarm.NPC
 
                     MovementStep nextStep = npcMoveStack.Pop();
 
+                    // 每走一步都确定下一步的场景名
                     currentScene = nextStep.SceneName;
                     CheckSceneValid();
 
                     TimeSpan nextStepTimeSpan = new TimeSpan(nextStep.hour, nextStep.minute, nextStep.seconds);
                     Vector3Int nextGridPos = (Vector3Int)nextStep.gridCoordinate;
-
                     MoveToNextStep(nextStepTimeSpan, nextGridPos);
                 }
                 else
@@ -341,30 +369,34 @@ namespace MFarm.NPC
             isMove = true;
             nextWorldPosition = GridToWorldPosition(nextGridPos);
 
+            if (Vector3.Distance(nextGridPos, currentGridPosition) > 3)
+                goto teleport;
+
             if (nextStepTimeSpan > GameTimeSpan)
             {
-                float distance = Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.localPosition));
+                // HACK:1
+                float distance = Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position));
                 float totalTime = (float)(nextStepTimeSpan.TotalSeconds - GameTimeSpan.TotalSeconds);
                 float normalSpeed = Mathf.Max(minSpeed, distance / totalTime / Settings.secondThreshold);
-
-                dir = (nextWorldPosition - transform.localPosition).normalized;
-
-                Vector3 startWorldPos = transform.localPosition;
+                // HACK:1
+                dir = (nextWorldPosition - transform.position).normalized;
+                // HACK:1
+                Vector3 startWorldPos = transform.position;
                 Vector3 targetWorldPos = GridToWorldPosition(nextGridPos);
 
                 if (normalSpeed <= maxSpeed)
                 {
-
+                    // HACK:1
                     //开始移动
-                    while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.localPosition)) > Settings.pixelSize)
+                    while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position)) > Settings.pixelSize)
                     {
-
-                        Vector2 posOffset = new Vector2(dir.x * speed * Time.fixedDeltaTime, dir.y * speed * Time.fixedDeltaTime);
+                        Vector2 posOffset = new Vector2(dir.x * normalSpeed * Time.fixedDeltaTime, dir.y * normalSpeed * Time.fixedDeltaTime);
                         RB2D.MovePosition(RB2D.position + posOffset);
                         yield return new WaitForFixedUpdate();
                     }
                 }
             }
+            teleport:
             RB2D.transform.position = nextWorldPosition;
             isMove = false;
             currentGridPosition = nextGridPos;

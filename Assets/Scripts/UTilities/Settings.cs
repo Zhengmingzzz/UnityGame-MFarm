@@ -34,4 +34,6 @@ public class Settings
     public const float pixelSize = 0.025f;
 
     public const float NPCWatiEventTime = 10f;
+
+    public const int maxGridSize = 9999;
 }

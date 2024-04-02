@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// 控制整个游戏的时间系统，现实的一秒相当于游戏中的45秒
+/// </summary>
 public class TimeManager : Singleton<TimeManager>
 {
     private int second, minute, hour, day, mouth, year;
@@ -86,17 +89,6 @@ public class TimeManager : Singleton<TimeManager>
         }
     }
 
-    //private void AccelerateTime()
-    //{
-    //    isAccelerate = !isAccelerate;
-    //    if (isAccelerate == true)
-    //    {
-    //        minute++;
-    //        EventHandler.CallUpUpdataDate(year, mouth, day, gameSeason);
-    //        EventHandler.CallUpUpdataTime(minute, hour, day, gameSeason);
-    //        EventHandler.CallUpUpdataGameDayEvent(day, gameSeason);
-    //    }
-    //}
 
     public void UpdataTime()
     {

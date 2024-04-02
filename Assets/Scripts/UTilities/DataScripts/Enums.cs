@@ -38,7 +38,9 @@ public enum Season
 {
     春天,夏天,秋天,冬天
 }
-
+/// <summary>
+/// 土地类型 是否可挖掘 可丢东西...
+/// </summary>
 public enum E_GridType
 {
     CanDig,CanDrop, CanPlaceFurniture,NPC_Obstacle,

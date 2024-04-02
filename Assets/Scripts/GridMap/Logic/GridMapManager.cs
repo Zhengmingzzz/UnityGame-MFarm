@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-    using MFarm.CropPlant;
+using MFarm.CropPlant;
 
 namespace MFarm.Map
 {
@@ -42,7 +42,7 @@ namespace MFarm.Map
         }
         private void Start()
         {
-            
+
 
 
         }
@@ -86,7 +86,7 @@ namespace MFarm.Map
                         gridY = t.gridY,
                     };
                 }
-                
+
 
                 switch (t.gridType)
                 {
@@ -104,7 +104,7 @@ namespace MFarm.Map
                         break;
                 }
 
-                
+
                 if (tileDetail != null)
                 {
                     TileDetailDic[key] = tileDetail;
@@ -128,9 +128,9 @@ namespace MFarm.Map
         }
 
 
-        public TileDetail getTileDetailByPos(Vector3Int GridPos)
+        public TileDetail getTileDetailByPos(string sceneName, Vector3Int GridPos)
         {
-            return getTileDetailByKey(SceneManager.GetActiveScene().name + " " + GridPos.x + "x" + GridPos.y + "y");
+            return getTileDetailByKey(sceneName + " " + GridPos.x + "x" + GridPos.y + "y");
         }
 
         /// <summary>
@@ -141,13 +141,13 @@ namespace MFarm.Map
         private void OnExecuteActionAfterAnimation(Vector3 clickedWorldPos, ItemDetails clickedItemDetail)
         {
             Vector3Int MousePositionInGrid = currentGrid.WorldToCell(clickedWorldPos);
-            TileDetail currentTileDetail = getTileDetailByPos(MousePositionInGrid);
+            TileDetail currentTileDetail = getTileDetailByPos(SceneManager.GetActiveScene().name,MousePositionInGrid);
             Crop currentCrop = FindCropByMouseWorldPos(clickedWorldPos);
             if (clickedItemDetail.itemType == ItemType.ChopTool)
             {
                 if (currentCrop != null)
                 {
-                    currentTileDetail = getTileDetailByPos(new Vector3Int(currentCrop.tileDetail.gridX, currentCrop.tileDetail.gridY, 0));
+                    currentTileDetail = getTileDetailByPos(SceneManager.GetActiveScene().name, new Vector3Int(currentCrop.tileDetail.gridX, currentCrop.tileDetail.gridY, 0));
                 }
             }
 
@@ -157,7 +157,7 @@ namespace MFarm.Map
                 {
                     //TODO:添加不同物品类型的实现
                     case ItemType.Commodity:
-                        EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, playerTransform.position, MousePositionInGrid) ;
+                        EventHandler.CallUpDropItemEvent(clickedItemDetail.ItemID, playerTransform.position, MousePositionInGrid);
                         break;
                     case ItemType.HoeTool:
                         OnDigTile(currentTileDetail);
@@ -199,7 +199,7 @@ namespace MFarm.Map
                 UpdataTileDetailToDic(currentTileDetail);
             }
 
-            
+
         }
 
         /// <summary>
@@ -266,14 +266,14 @@ namespace MFarm.Map
         }
 
 
-        
+
 
 
         private void OnUpdataGameDayEvent(int gameDay, Season gameSeason)
         {
 
 
-            
+
 
             foreach (var tile in TileDetailDic)
             {
@@ -348,15 +348,15 @@ namespace MFarm.Map
 
         }
 
-        public bool CheckReapItemValidInRadium(ItemDetails toolDetails,Vector3 mouseWorldPos)
+        public bool CheckReapItemValidInRadium(ItemDetails toolDetails, Vector3 mouseWorldPos)
         {
             Collider2D[] colliderArray = new Collider2D[20];
             reapItemList = new List<ReapItem>();
-            int count = Physics2D.OverlapCircleNonAlloc(mouseWorldPos, toolDetails.itemUseRadius,colliderArray);
+            int count = Physics2D.OverlapCircleNonAlloc(mouseWorldPos, toolDetails.itemUseRadius, colliderArray);
 
             foreach (Collider2D c in colliderArray)
             {
-                if(c!=null && c.GetComponent<ReapItem>())
+                if (c != null && c.GetComponent<ReapItem>())
                     reapItemList.Add(c.GetComponent<ReapItem>());
             }
 
@@ -364,7 +364,13 @@ namespace MFarm.Map
             return reapItemList.Count > 0;
         }
 
-
+        /// <summary>
+        /// 根据场景名查找对应的map_so文件得到该场景的宽度和高度
+        /// </summary>
+        /// <param name="SceneName"></param>
+        /// <param name="gridDimension"></param>
+        /// <param name="gridOrigin">地图原点(这张地图左下角的xy值，便于计算路径)</param>
+        /// <returns></returns>
         public bool getGridDimensions(string SceneName, out Vector2Int gridDimension, out Vector2Int gridOrigin)
         {
             gridDimension = Vector2Int.zero;
@@ -372,7 +378,6 @@ namespace MFarm.Map
 
             foreach (var m in mapData_SO_List)
             {
-                
                 if (m.SceneName == SceneName)
                 {
                     gridDimension = new Vector2Int(m.gridWidth, m.gridHeight);
@@ -387,5 +392,5 @@ namespace MFarm.Map
 
     }
 
-    
+
 }

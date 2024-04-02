@@ -1250,6 +1250,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -66
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -65
     gridY: -5
     gridType: 3
@@ -1276,6 +1280,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -65
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -65
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -64
@@ -1318,6 +1326,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -64
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -63
     gridY: -5
     gridType: 3
@@ -1346,6 +1358,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -63
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -62
     gridY: -5
     gridType: 3
@@ -1372,6 +1388,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -62
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -62
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -61
@@ -1414,6 +1434,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -61
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -60
     gridY: -5
     gridType: 3
@@ -1454,6 +1478,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -60
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -59
     gridY: -5
     gridType: 3
@@ -1492,6 +1520,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -59
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -59
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -58
@@ -1534,6 +1566,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -58
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -57
     gridY: -6
     gridType: 3
@@ -1568,6 +1604,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -57
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -57
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -56
@@ -1604,6 +1644,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -56
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -56
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -55
@@ -1626,6 +1670,10 @@ MonoBehaviour:
     gridY: 8
     gridType: 3
     gridTypeBoolValue: 1
+  - gridX: -55
+    gridY: 9
+    gridType: 3
+    gridTypeBoolValue: 1
   - gridX: -54
     gridY: -9
     gridType: 3
@@ -1640,6 +1688,10 @@ MonoBehaviour:
     gridTypeBoolValue: 1
   - gridX: -54
     gridY: 8
+    gridType: 3
+    gridTypeBoolValue: 1
+  - gridX: -54
+    gridY: 9
     gridType: 3
     gridTypeBoolValue: 1
   - gridX: -53

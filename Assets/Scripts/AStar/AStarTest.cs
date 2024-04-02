@@ -8,6 +8,7 @@ namespace MFarm.N_AStar
 {
     public class AStarTest : MonoBehaviour
     {
+        [Header("绘制路径所需参数")]
         public Tilemap tilemap;
 
         public TileBase displayPathTile;
@@ -39,8 +40,8 @@ namespace MFarm.N_AStar
             ShowPathOnGridMap();
             if (isMove)
             {
-                isMove = false;
                 NPCMovement.BuildPath(schedule);
+                isMove = false;
             }
         }
 
