@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MFarm.Map;
+using UnityEngine.SceneManagement;
 
 public class ItemGenerator : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class ItemGenerator : MonoBehaviour
         if (this.seedID != 0)
         {
             Vector3Int itemPos = currentGrid.WorldToCell(transform.position);
-            TileDetail tile = GridMapManager.Instance.getTileDetailByPos(itemPos);
+            TileDetail tile = GridMapManager.Instance.getTileDetailByPos(SceneManager.GetActiveScene().name,itemPos);
 
             if (tile == null)
             {

@@ -9,6 +9,7 @@ namespace MFarm.N_AStar
     {
         private GridNodes gridNodes;
 
+        // 整个地图的宽和高
         private int gridWidth;
         private int gridHeight;
 
@@ -18,6 +19,7 @@ namespace MFarm.N_AStar
         private int originX;
         private int originY;
 
+        // 选中的Node周围的八个Node
         private List<Node> openList;
         private HashSet<Node> closeList;
         public Stack<MovementStep> pathStack;
@@ -25,14 +27,15 @@ namespace MFarm.N_AStar
         private bool isFindPath;
 
         /// <summary>
-        /// 由NPC调用并传入参数
+        /// 生成GridNodes
         /// </summary>
         /// <param name="SceneName"></param>
-        /// <returns></returns>
+        /// <returns>判断始末位置是否为障碍并且建立GridNodes二维数组</returns>
         private bool generateGridNodes(string SceneName, Vector2Int startGridPos, Vector2Int targetGridPos)
         {
             if (GridMapManager.Instance.getGridDimensions(SceneName, out Vector2Int gridDimension, out Vector2Int gridOrigin))
             {
+                // 根据宽度和高度创建一个GridNodes类 包含该地图网格宽度高度和Node类的二维数组
                 gridNodes = new GridNodes(gridDimension.x, gridDimension.y);
 
                 gridWidth = gridDimension.x;
@@ -46,6 +49,7 @@ namespace MFarm.N_AStar
                 return false;
             }
 
+            // startNode|targetNode都不是实际上的坐标位置
             startNode = gridNodes.getGridNode(startGridPos.x - originX, startGridPos.y - originY);
             targetNode = gridNodes.getGridNode(targetGridPos.x - originX, targetGridPos.y - originY);
 
@@ -54,9 +58,11 @@ namespace MFarm.N_AStar
                 for (int y = 0; y < gridHeight; y++)
                 {
 
-                    TileDetail tile = GridMapManager.Instance.getTileDetailByPos(new Vector3Int(x + originX, y + originY, 0));
+                    // 根据实际坐标拿到对应的瓦片信息
+                    TileDetail tile = GridMapManager.Instance.getTileDetailByPos(SceneName, new Vector3Int(x + originX, y + originY, 0));
                     if (tile != null)
                     {
+                        // 将瓦片是否为障碍物的信息填入新建的二维数组GridNodes
                         gridNodes.gridNodesArray[x, y].isObstacle = tile.NPC_Obstacle;
 
                     }
@@ -65,6 +71,7 @@ namespace MFarm.N_AStar
              }
             if (startNode.isObstacle || targetNode.isObstacle)
             {
+                Debug.Log("startNode||targetNode is Obstacle");
                 return false;
             }
 
@@ -199,7 +206,6 @@ namespace MFarm.N_AStar
 
         private void GetMovementStepToStack(string sceneName, Stack<MovementStep> movementSteps)
         {
-
             Node nextNode = targetNode;
 
 
@@ -208,6 +214,7 @@ namespace MFarm.N_AStar
                 MovementStep MS = new MovementStep();
                 MS.SceneName = sceneName;
                 MS.gridCoordinate = new Vector2Int(nextNode.NodeX + originX, nextNode.NodeY + originY);
+
                 movementSteps.Push(MS);
                 nextNode = nextNode.parentNode;
             }

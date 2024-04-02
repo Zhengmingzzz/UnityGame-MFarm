@@ -14,11 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScheduleList:
   - hour: 8
-    minute: 30
+    minute: 40
     day: 1
     season: 0
     priority: 0
     targetScene: 01Field
     targetGridPos: {x: -62, y: -7, z: 0}
+    targetAnimation: {fileID: 7400000, guid: 5862232713ceb47de9810fd757392781, type: 2}
+    isInteractive: 0
+  - hour: 8
+    minute: 10
+    day: 1
+    season: 0
+    priority: 0
+    targetScene: 01Home
+    targetGridPos: {x: -42, y: 2, z: 0}
     targetAnimation: {fileID: 7400000, guid: 5862232713ceb47de9810fd757392781, type: 2}
     isInteractive: 0

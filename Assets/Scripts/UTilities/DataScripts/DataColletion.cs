@@ -64,6 +64,9 @@ public class SerializedVector3
     }
 }
 
+/// <summary>
+/// 网格的x,y坐标，类型，对应类型的bool值
+/// </summary>
 [System.Serializable]
 public class TileProperty
 {
@@ -104,4 +107,29 @@ public class NPC_Position
     public Transform NPCTransform;
     public string SceneName;
     public Vector3Int StartPosition;
+}
+
+/// <summary>
+/// 含有多个ScenePath类
+/// 用于记录NPC在多个场景移动时需要到达的坐标
+/// </summary>
+[System.Serializable]
+public class SceneRoute
+{
+    public string fromSceneName;
+    public string toSceneName;
+    public List<ScenePath> SecneRouteList;
+}
+
+/// <summary>
+/// 记录了NPC在某一场景中的移动坐标路径
+/// 若其中一个坐标为9999则表示到达该场景后按schedule中的坐标移动
+/// </summary>
+[System.Serializable]
+public class ScenePath
+{
+    // 用于在RouteData_SO文件中了解当前场景
+    public string sceneName;
+    public Vector2Int fromGridCell;
+    public Vector2Int gotoGridCell;
 }

@@ -75,10 +75,6 @@ namespace MFarm.Map
 
                             mapData_SO.TilePropertiesList.Add(tileProperty);
                         }
-
-
-
-
                     }
                 }
             }

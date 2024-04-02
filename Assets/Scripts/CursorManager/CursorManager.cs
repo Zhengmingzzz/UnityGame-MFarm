@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using MFarm.CropPlant;
+using UnityEngine.SceneManagement;
 public class CursorManager : MonoBehaviour
 {
     public Sprite normal, tool, cursorSeed, goods, UISprite, Furniture;
@@ -206,12 +207,12 @@ public class CursorManager : MonoBehaviour
                 if (crop != null)
                 {
                     // 因为树比较大，所以需要根据它的根部坐标计算
-                    CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(new Vector3Int(crop.tileDetail.gridX, crop.tileDetail.gridY, 0));
+                    CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(SceneManager.GetActiveScene().name,new Vector3Int(crop.tileDetail.gridX, crop.tileDetail.gridY, 0));
                 }
             }
             else
             {
-                CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(mouseGridPos);
+                CheckTileDetailInfo = MFarm.Map.GridMapManager.Instance.getTileDetailByPos(SceneManager.GetActiveScene().name, mouseGridPos);
             }
 
 
