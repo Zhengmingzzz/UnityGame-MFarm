@@ -377,11 +377,8 @@ namespace MFarm.NPC
                 // HACK:1
                 float distance = Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position));
                 float totalTime = (float)(nextStepTimeSpan.TotalSeconds - GameTimeSpan.TotalSeconds);
-<<<<<<< HEAD
                 float speed = Mathf.Max(minSpeed, distance / totalTime / Settings.secondThreshold);
-=======
                 float normalSpeed = Mathf.Max(minSpeed, distance / totalTime / Settings.secondThreshold);
->>>>>>> f3f865c0b89281c24d6f6bb2fe2b3bcd64d68b15
                 // HACK:1
                 dir = (nextWorldPosition - transform.position).normalized;
                 // HACK:1
@@ -392,7 +389,6 @@ namespace MFarm.NPC
                 {
                     // HACK:1
                     //开始移动
-<<<<<<< HEAD
                     // 记录上次距目标位置的距离，用于判断NPC是否运动过快导致无法退出循环的情况
                     float lastDistance = Vector3.Distance(transform.position, nextWorldPosition);
                     while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position)) > Settings.pixelSize)
@@ -402,18 +398,16 @@ namespace MFarm.NPC
                             lastDistance = currentDistance;
                         else
                             break;
-                        Vector2 posOffset = new Vector2(dir.x * speed * Time.fixedDeltaTime, dir.y * speed * Time.fixedDeltaTime);
-=======
-                    while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position)) > Settings.pixelSize)
-                    {
                         Vector2 posOffset = new Vector2(dir.x * normalSpeed * Time.fixedDeltaTime, dir.y * normalSpeed * Time.fixedDeltaTime);
->>>>>>> f3f865c0b89281c24d6f6bb2fe2b3bcd64d68b15
-                        RB2D.MovePosition(RB2D.position + posOffset);
-                        yield return new WaitForFixedUpdate();
+                        while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position)) > Settings.pixelSize)
+                        {
+                            RB2D.MovePosition(RB2D.position + posOffset);
+                            yield return new WaitForFixedUpdate();
+                        }
                     }
                 }
             }
-            teleport:
+        teleport:
             RB2D.transform.position = nextWorldPosition;
             isMove = false;
             currentGridPosition = nextGridPos;
@@ -480,4 +474,5 @@ namespace MFarm.NPC
         }
     }
 }
+
 
