@@ -21,7 +21,6 @@ public class NPC_Manager : Singleton<NPC_Manager>
         base.Awake();
         InitSceneRouteDict();
     }
-
     private void InitSceneRouteDict()
     {
         foreach (SceneRoute route in npcRoutes_SO.sceneRouteList)

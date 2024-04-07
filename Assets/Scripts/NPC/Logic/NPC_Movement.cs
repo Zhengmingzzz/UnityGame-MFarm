@@ -246,7 +246,7 @@ namespace MFarm.NPC
                 SceneRoute sceneRoute = NPC_Manager.Instance.GetSceneRoute(currentScene, schedule.targetScene);
                 if (sceneRoute != null)
                 {
-                    foreach (var r in sceneRoute.SecneRouteList)
+                    foreach (ScenePath r in sceneRoute.SecneRouteList)
                     {
                         Vector2Int fromPos, gotoPos;
                         fromPos = r.fromGridCell;
@@ -369,9 +369,6 @@ namespace MFarm.NPC
             isMove = true;
             nextWorldPosition = GridToWorldPosition(nextGridPos);
 
-            if (Vector3.Distance(nextGridPos, currentGridPosition) > 3)
-                goto teleport;
-
             if (nextStepTimeSpan > GameTimeSpan)
             {
                 // HACK:1
@@ -399,15 +396,11 @@ namespace MFarm.NPC
                         else
                             break;
                         Vector2 posOffset = new Vector2(dir.x * normalSpeed * Time.fixedDeltaTime, dir.y * normalSpeed * Time.fixedDeltaTime);
-                        while (Mathf.Abs(Vector3.Distance(nextWorldPosition, transform.position)) > Settings.pixelSize)
-                        {
                             RB2D.MovePosition(RB2D.position + posOffset);
                             yield return new WaitForFixedUpdate();
-                        }
                     }
                 }
             }
-        teleport:
             RB2D.transform.position = nextWorldPosition;
             isMove = false;
             currentGridPosition = nextGridPos;
